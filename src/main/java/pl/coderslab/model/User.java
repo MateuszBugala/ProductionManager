@@ -16,6 +16,8 @@ public class User {
     private String lastName;
     private String email;
 
+    private String password;
+
     @ManyToOne
     private UserGroup userGroup;
 
@@ -69,6 +71,14 @@ public class User {
 
     public void setQuotations(List<Quotation> quotations) {
         this.quotations = quotations;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
