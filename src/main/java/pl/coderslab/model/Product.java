@@ -23,13 +23,16 @@ public class Product {
     private int outerWidth;
     private int outerLength;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE/*, fetch = FetchType.EAGER*/)
     private List<ProductColor> productColors = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE/*, fetch = FetchType.EAGER*/)
     private List<ProductMaterial> productMaterials = new ArrayList<>();
 
     private String notes;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private List<QuotationItem> quotationItems = new ArrayList<>();
 
 
     public Long getId() {
@@ -120,6 +123,14 @@ public class Product {
         this.notes = notes;
     }
 
+    public List<QuotationItem> getQuotationItems() {
+        return quotationItems;
+    }
+
+    public void setQuotationItems(List<QuotationItem> quotationItems) {
+        this.quotationItems = quotationItems;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -134,6 +145,7 @@ public class Product {
                 ", productColors=" + productColors +
                 ", productMaterials=" + productMaterials +
                 ", notes='" + notes + '\'' +
+                ", quotationItems=" + quotationItems +
                 '}';
     }
 }

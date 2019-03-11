@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "product_groups")
-public class ProductGroup {
+@Table(name = "user_groups")
+public class UserGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +14,8 @@ public class ProductGroup {
 
     private String name;
 
-    @OneToMany(mappedBy = "productGroup", cascade = CascadeType.MERGE)
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "userGroup", cascade = CascadeType.MERGE)
+    private List<User> users = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -33,22 +33,20 @@ public class ProductGroup {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
     public String toString() {
-        return "ProductGroup{" +
+        return "UserGroup{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", products=" + products +
+                ", users=" + users +
                 '}';
     }
-
-
 }
