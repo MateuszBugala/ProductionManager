@@ -31,7 +31,7 @@
     <form:errors path="email" cssClass="error-message" element="div" />
 
     <label for="password"><b>Password:</b></label>
-    <form:input path="password" placeholder="Enter password" name="password" />
+    <form:input type="password" path="password" placeholder="Enter password" name="password" />
     <form:errors path="password" cssClass="error-message" element="div" />
 
     <label for="userGroup"><b>User group:</b></label>

@@ -1,5 +1,6 @@
 package pl.coderslab.service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +30,23 @@ public class UserService {
 
     public void update(User entity) {
         String pass = findById(entity.getId()).getPassword();
-        entity.setPassword(pass);
+        entity.setPasswordNoEncryption(pass);
         userRepository.save(entity);
     }
 
     public void delete(Long id) {
         userRepository.delete(id);
+    }
+
+    public User authorization(String emailCandidate, String passwordCandidate) {
+        List<User> userList = userRepository.findAll();
+        for (User user : userList) {
+            if (emailCandidate.equals(user.getEmail())) {
+                if (BCrypt.checkpw(passwordCandidate, user.getPassword())) {
+                    return user;
+                }
+            }
+        }
+        return null;
     }
 }

@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +80,10 @@ public class User {
     }
 
     public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public void setPasswordNoEncryption(String password) {
         this.password = password;
     }
 
