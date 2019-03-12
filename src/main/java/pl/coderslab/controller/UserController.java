@@ -67,7 +67,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "users/edit";
         }
-        userService.save(user);
+        userService.update(user);
         return "redirect:/users/all";
     }
 

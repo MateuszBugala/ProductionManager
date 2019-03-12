@@ -27,6 +27,12 @@ public class UserService {
         userRepository.save(entity);
     }
 
+    public void update(User entity) {
+        String pass = findById(entity.getId()).getPassword();
+        entity.setPassword(pass);
+        userRepository.save(entity);
+    }
+
     public void delete(Long id) {
         userRepository.delete(id);
     }

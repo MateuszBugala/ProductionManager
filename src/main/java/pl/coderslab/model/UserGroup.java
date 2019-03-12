@@ -46,7 +46,8 @@ public class UserGroup {
         return "UserGroup{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", users=" + users +
+//nie może być poniższego bo inaczej nie działa edycja Users
+//                ", users=" + users +
                 '}';
     }
 }
