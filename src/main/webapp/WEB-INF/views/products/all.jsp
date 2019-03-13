@@ -46,7 +46,7 @@
                 </c:forEach>
             </td>
 
-            <td>${product.productMaterials}</td>
+            <%--<td>${product.productMaterials}</td>--%>
 
             <td>${product.notes}</td>
             <td style="width: 50px"><a href="/products/edit/${product.id}" >Edit</a></td>
