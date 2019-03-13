@@ -13,7 +13,8 @@ public class ProductColor {
 
     private String name;
 
-    @ManyToMany(mappedBy = "productColors")
+//    cascade, aby prawidłowe wyświetlanie kolorów na liście produktów i dodawania prod
+    @ManyToMany(mappedBy = "productColors"/*, cascade = CascadeType.MERGE*/)
     private List<Product> products;
 
     public Long getId() {
@@ -40,12 +41,13 @@ public class ProductColor {
         this.products = products;
     }
 
+
     @Override
     public String toString() {
         return "ProductColor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", products=" + products +
+//                ", products=" + products +
                 '}';
     }
 }

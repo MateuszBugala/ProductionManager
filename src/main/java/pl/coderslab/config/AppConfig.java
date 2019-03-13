@@ -15,6 +15,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pl.coderslab.converter.ProductColorConverter;
+import pl.coderslab.converter.ProductGroupConverter;
+import pl.coderslab.converter.ProductMaterialConverter;
 import pl.coderslab.converter.UserGroupConverter;
 
 import javax.persistence.EntityManagerFactory;
@@ -62,12 +65,30 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getUserGroupConverter());
+        registry.addConverter(getProductColorConverter());
+        registry.addConverter(getProductMaterialConverter());
+        registry.addConverter(getProductGroupConverter());
     }
 
 
     @Bean
     public UserGroupConverter getUserGroupConverter() {
         return new UserGroupConverter();
+    }
+
+    @Bean
+    public ProductColorConverter getProductColorConverter() {
+        return new ProductColorConverter();
+    }
+
+    @Bean
+    public ProductMaterialConverter getProductMaterialConverter() {
+        return new ProductMaterialConverter();
+    }
+
+    @Bean
+    public ProductGroupConverter getProductGroupConverter() {
+        return new ProductGroupConverter();
     }
 
 

@@ -4,14 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Product;
+import pl.coderslab.model.ProductColor;
+import pl.coderslab.model.ProductGroup;
+import pl.coderslab.model.ProductMaterial;
+import pl.coderslab.service.ProductColorService;
+import pl.coderslab.service.ProductGroupService;
+import pl.coderslab.service.ProductMaterialService;
 import pl.coderslab.service.ProductService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/products", produces = "text/html; charset=UTF-8")
@@ -20,6 +24,33 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ProductGroupService productGroupService;
+
+    @Autowired
+    private ProductColorService productColorService;
+
+    @Autowired
+    private ProductMaterialService productMaterialService;
+
+
+    @ModelAttribute("productGroups")
+    public List<ProductGroup> getProductGroups() {
+        return productGroupService.findAll();
+    }
+
+    @ModelAttribute("productColors")
+    public List<ProductColor> getProductColors() {
+        return productColorService.findAll();
+    }
+
+        @ModelAttribute("productMaterials")
+    public List<ProductMaterial> getProductMaterials() {
+        return productMaterialService.findAll();
+    }
+
+
 
 
     @RequestMapping("/all")

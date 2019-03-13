@@ -14,10 +14,21 @@
         <p>Production Manager App</p>
     </div>
     <div class="w3-display-middle w3-container w3-xlarge">
-        <p><button onclick="location.href='/login'" class="w3-button w3-black w3-xxlarge">Log in</button></p>
-        <p><button onclick="location.href='/users/add'" class="w3-button w3-black w3-xxlarge">Create an user</button></p>
+        <p>
+            <button onclick="location.href='/login'" class="w3-button w3-black w3-xxlarge">Log in</button>
+        </p>
+        <p>
+            <button onclick="location.href='/users/add'" class="w3-button w3-black w3-xxlarge">Create an user</button>
+        </p>
     </div>
 
+</div>
+
+<div class="w3-display-left w3-container w3-large">
+    <h4><a href="http://localhost:8080/productGroups/all" class="w3-button w3-black w3-large">Product group</a></h4>
+    <h4><a href="http://localhost:8080/productColors/all" class="w3-button w3-black w3-large">Product color</a></h4>
+    <h4><a href="http://localhost:8080/productMaterials/all" class="w3-button w3-black w3-large">Product material</a></h4>
+    <h4><a href="http://localhost:8080/products/all" class="w3-button w3-black w3-large">Products</a></h4>
 </div>
 
 </body>

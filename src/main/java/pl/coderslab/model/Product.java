@@ -23,7 +23,8 @@ public class Product {
     private int outerWidth;
     private int outerLength;
 
-    @ManyToMany(cascade = CascadeType.MERGE/*, fetch = FetchType.EAGER*/)
+    //    fetchType.EAGER, aby prawidłowe wyświetlanie kolorów na liście produktów
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<ProductColor> productColors = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.MERGE/*, fetch = FetchType.EAGER*/)
@@ -130,6 +131,7 @@ public class Product {
     public void setQuotationItems(List<QuotationItem> quotationItems) {
         this.quotationItems = quotationItems;
     }
+
 
     @Override
     public String toString() {

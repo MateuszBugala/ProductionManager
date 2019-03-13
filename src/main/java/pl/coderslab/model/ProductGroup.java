@@ -46,7 +46,7 @@ public class ProductGroup {
         return "ProductGroup{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", products=" + products +
+//                ", products=" + products +
                 '}';
     }
 

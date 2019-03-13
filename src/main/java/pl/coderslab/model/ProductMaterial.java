@@ -13,7 +13,8 @@ public class ProductMaterial {
 
     private String name;
 
-    @ManyToMany(mappedBy = "productMaterials")
+    //    cascade, aby prawidłowe wyświetlanie materiałów na liście produktów
+    @ManyToMany(mappedBy = "productMaterials"/*, cascade = CascadeType.MERGE*/)
     private List<Product> products;
 
     public Long getId() {
@@ -45,7 +46,7 @@ public class ProductMaterial {
         return "ProductMaterial{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", products=" + products +
+//                ", products=" + products +
                 '}';
     }
 }
