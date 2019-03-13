@@ -1,5 +1,10 @@
 package pl.coderslab.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -7,6 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "quotations")
+@Component
+@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Quotation {
 
     @Id
@@ -27,6 +34,9 @@ public class Quotation {
     @OneToMany(mappedBy = "quotation", cascade = CascadeType.MERGE)
     private List<QuotationItem> quotationItems = new ArrayList<>();
 
+    public void addQuotation(QuotationItem quotationItem) {
+        quotationItems.add(quotationItem);
+    }
 
     public Long getId() {
         return id;

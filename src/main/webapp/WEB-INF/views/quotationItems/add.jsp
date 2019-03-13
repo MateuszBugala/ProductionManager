@@ -52,9 +52,8 @@
 </table>
 
 <form:form method="post" modelAttribute="quotationItem" action="/quotationItems/add">
+    <form:hidden path="id" value="${product.id}"/>
     <table>
-
-
         <tr>
             <td>Quantity:</td>
             <td><form:input path="quantity"/><br></td>

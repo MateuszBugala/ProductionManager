@@ -24,7 +24,6 @@ public class QuotationItem {
     private LocalDate actualDeliveryDate;
     private String notes;
 
-
     public Long getId() {
         return id;
     }

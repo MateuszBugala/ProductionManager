@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.model.Quotation;
 import pl.coderslab.model.QuotationItem;
 import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
@@ -23,6 +24,9 @@ public class QuotationItemController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private Quotation quotation;
 
     @RequestMapping("/all")
     public String all(Model model) {
@@ -40,12 +44,20 @@ public class QuotationItemController {
 
 
     @PostMapping("/add")
-    public String save(@Valid QuotationItem quotationItem, BindingResult result) {
+    public String save(@Valid QuotationItem quotationItem, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "quotationItems/add";
         }
-        quotationItemService.save(quotationItem);
-        return "redirect:/quotationItems/all";
+        Long productId = quotationItem.getId();
+        quotationItem.setId(null);
+        quotationItem.setProduct(productService.findById(productId));
+
+        quotation.addQuotation(quotationItem);
+
+        model.addAttribute("quotation", quotation);
+//        quotationItemService.save(quotationItem);
+//        return "redirect:/quotationItems/all";
+        return "redirect:/products/all";
     }
 
 
