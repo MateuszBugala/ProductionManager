@@ -4,6 +4,7 @@ package pl.coderslab.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.model.Product;
 import pl.coderslab.model.ProductMaterial;
 import pl.coderslab.repository.ProductMaterialRepository;
 
@@ -31,6 +32,10 @@ public class ProductMaterialService {
 
     public void delete(Long id) {
         productMaterialRepository.delete(id);
+    }
+
+    public List<ProductMaterial> findProductMaterialsByProducts(Product product) {
+        return productMaterialRepository.findProductMaterialsByProducts(product);
     }
 
 }

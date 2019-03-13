@@ -61,7 +61,10 @@ public class ProductController {
 
     @RequestMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productService.findById(id));
+        Product product = productService.findById(id);
+        List<ProductMaterial> productMaterials= productMaterialService.findProductMaterialsByProducts(product);
+        product.setProductMaterials(productMaterials);
+        model.addAttribute("product", product);
         return "products/details";
     }
 
@@ -85,7 +88,11 @@ public class ProductController {
 
     @GetMapping("/edit/{id}")
     public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productService.findById(id));
+        Product product = productService.findById(id);
+        List<ProductMaterial> productMaterials= productMaterialService.findProductMaterialsByProducts(product);
+        product.setProductMaterials(productMaterials);
+        model.addAttribute("product", product);
+//        model.addAttribute("product", productService.findById(id));
         return "products/edit";
     }
 

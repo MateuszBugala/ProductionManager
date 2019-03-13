@@ -23,7 +23,7 @@
     <th>OuterWidth</th>
     <th>OuterLength</th>
     <th>Colors</th>
-    <%--<th>Materials</th>--%>
+    <th>Materials</th>
     <th>Notes</th>
     <th colspan="2">Actions</th>
     </thead>
@@ -42,6 +42,12 @@
             <td style="max-width: 400px">
                 <c:forEach items="${product.productColors}" var="productColors" varStatus="stat">
                     ${stat.index+1}. ${productColors.name}<br>
+                </c:forEach>
+            </td>
+
+            <td style="max-width: 400px">
+                <c:forEach items="${product.productMaterials}" var="productMaterials" varStatus="stat">
+                    ${stat.index+1}. ${productMaterials.name}<br>
                 </c:forEach>
             </td>
 
