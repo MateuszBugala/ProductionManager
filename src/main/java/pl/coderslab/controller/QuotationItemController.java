@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.QuotationItem;
+import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
 
 import javax.validation.Valid;
@@ -20,6 +21,9 @@ public class QuotationItemController {
     @Autowired
     private QuotationItemService quotationItemService;
 
+    @Autowired
+    private ProductService productService;
+
     @RequestMapping("/all")
     public String all(Model model) {
         model.addAttribute("quotationItems", quotationItemService.findAll());
@@ -27,8 +31,9 @@ public class QuotationItemController {
     }
 
 
-    @GetMapping("/add")
-    public String add(Model model) {
+    @GetMapping("/add/{id}")
+    public String add(@PathVariable Long id, Model model) {
+        model.addAttribute("product", productService.findById(id));
         model.addAttribute("quotationItem", new QuotationItem());
         return "quotationItems/add";
     }

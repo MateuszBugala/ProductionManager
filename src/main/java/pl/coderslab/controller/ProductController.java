@@ -59,6 +59,12 @@ public class ProductController {
         return "products/all";
     }
 
+    @RequestMapping("/details/{id}")
+    public String details(@PathVariable Long id, Model model) {
+        model.addAttribute("product", productService.findById(id));
+        return "products/details";
+    }
+
 
     @GetMapping("/add")
     public String add(Model model) {
