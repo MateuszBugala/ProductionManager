@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.Quotation;
+import pl.coderslab.model.User;
 import pl.coderslab.service.QuotationService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping(path = "/quotations", produces = "text/html; charset=UTF-8")
@@ -36,10 +40,17 @@ public class QuotationController {
 
 
     @PostMapping("/add")
-    public String save(@Valid Quotation quotation, BindingResult result) {
+    public String save(@Valid Quotation quotation, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
             return "quotations/add";
         }
+        quotation.setCreationTime(Timestamp.valueOf(LocalDateTime.now()));
+
+        User user = (User)session.getAttribute("currentUser");
+        quotation.setCreatedBy(user);
+
+        quotation.setStatus(1);
+
         quotationService.save(quotation);
         return "redirect:/quotations/all";
     }

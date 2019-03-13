@@ -29,6 +29,7 @@
     <h4><a href="http://localhost:8080/productColors/all" class="w3-button w3-black w3-large">Product color</a></h4>
     <h4><a href="http://localhost:8080/productMaterials/all" class="w3-button w3-black w3-large">Product material</a></h4>
     <h4><a href="http://localhost:8080/products/all" class="w3-button w3-black w3-large">Products</a></h4>
+    <h4><a href="http://localhost:8080/quotations/all" class="w3-button w3-black w3-large">Quotation</a></h4>
 </div>
 
 </body>

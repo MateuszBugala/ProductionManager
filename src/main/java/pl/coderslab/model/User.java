@@ -51,6 +51,10 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getFullName() {
+        return lastName + " " + firstName;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -86,6 +90,8 @@ public class User {
     public void setPasswordNoEncryption(String password) {
         this.password = password;
     }
+
+
 
     @Override
     public String toString() {
