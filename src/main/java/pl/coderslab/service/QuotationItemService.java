@@ -32,4 +32,8 @@ public class QuotationItemService {
     public void delete(Long id) {
         quotationItemRepository.delete(id);
     }
+
+    public List<QuotationItem> findAllByQuotationId(Long id) {
+        return quotationItemRepository.findAllByQuotationId(id);
+    }
 }
