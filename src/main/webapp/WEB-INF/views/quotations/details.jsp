@@ -100,9 +100,7 @@
 
 <h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>
 
-<div class="w3-display-left w3-container w3-large"></div>
-<h4><a href="" class="w3-button w3-black w3-large">Send to Production Department</a></h4>
-</div>
+<button onclick="location.href='http://localhost:8080/quotations/sent/${quotation.id}'" type="button">Send to Production Department</button>
 
 </body>
 </html>

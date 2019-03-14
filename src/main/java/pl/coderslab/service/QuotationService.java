@@ -53,4 +53,11 @@ public class QuotationService {
         quotationRepository.delete(id);
     }
 
+
+    public void changeStatus(Long id, int status) {
+        Quotation quotation = quotationRepository.findOne(id);
+        quotation.setStatus(status);
+        quotationRepository.save(quotation);
+    }
+
 }

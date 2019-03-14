@@ -111,4 +111,11 @@ public class QuotationController {
 //        quotationService.create(quotation, user);
 //        return "redirect:/quotations/all";
 //    }
+
+
+    @RequestMapping("/sent/{id}")
+    public String sent(@PathVariable Long id) {
+        quotationService.changeStatus(id,2);
+        return "quotations/sent";
+    }
 }
