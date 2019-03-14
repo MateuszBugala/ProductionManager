@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.ProductGroup;
 import pl.coderslab.service.ProductGroupService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -28,7 +29,11 @@ public class ProductGroupController {
 
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 2) {
+            return "redirect:/noAccess";
+        }
         model.addAttribute("productGroup", new ProductGroup());
         return "productGroups/add";
     }
@@ -45,7 +50,11 @@ public class ProductGroupController {
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, Model model, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 2) {
+            return "redirect:/noAccess";
+        }
         model.addAttribute("productGroup", productGroupService.findById(id));
         return "productGroups/edit";
     }
@@ -62,7 +71,11 @@ public class ProductGroupController {
 
 
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 2) {
+            return "redirect:/noAccess";
+        }
         try {
             productGroupService.delete(id);
             return "redirect:/productGroups/all?deleted=true";

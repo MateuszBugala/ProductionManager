@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<%--różnia w widoku dla userGroup--%>
+<%--różnica w widoku dla userGroup--%>
 <c:choose>
     <c:when test="${userGroup == 2}">
         <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
