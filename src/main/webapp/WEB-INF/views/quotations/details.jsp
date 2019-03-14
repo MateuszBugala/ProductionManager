@@ -51,6 +51,7 @@
 
 <br><br>
 <h3>Items in this quotation:</h3>
+<h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
 <table border="1" style="text-align: center">
 
     <thead>
@@ -76,7 +77,7 @@
             <td>${quotationItem.notes}</td>
 
             <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}" >Edit line</a></td>
-            <td style="width: 50px"><a href="/quotationItems/delete/${quotationItem.id}" >Delete line</a></td>
+            <td style="width: 50px"><a href="/quotationItems/delete/${quotation.id}/${quotationItem.id}" >Delete line</a></td>
         </tr>
     </c:forEach>
     </tbody>
@@ -89,15 +90,19 @@
 
 
 <c:if test="${not empty param.error}">
-    <h4 style="color: red"><span>Quotation cannot be deleted - it has some records in database</span></h4>
+    <h4 style="color: red"><span>Item cannot be deleted - it has some records in database</span></h4>
 </c:if>
 <c:if test="${not empty param.deleted}">
-    <h4 style="color: red"><span>Quotation has been deleted</span></h4>
+    <h4 style="color: red"><span>Item has been deleted</span></h4>
 </c:if>
 
-<h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
+
 
 <h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>
+
+<div class="w3-display-left w3-container w3-large"></div>
+<h4><a href="" class="w3-button w3-black w3-large">Send to Production Department</a></h4>
+</div>
 
 </body>
 </html>

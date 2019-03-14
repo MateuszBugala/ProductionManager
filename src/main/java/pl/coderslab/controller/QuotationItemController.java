@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.Product;
+import pl.coderslab.model.Quotation;
 import pl.coderslab.model.QuotationItem;
 import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
@@ -58,28 +59,35 @@ public class QuotationItemController {
 
     @GetMapping("/edit/{id}")
     public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("quotationItem", quotationItemService.findById(id));
+        QuotationItem quotationItem = quotationItemService.findById(id);
+        Product product = quotationItem.getProduct();
+        model.addAttribute("quotationItem", quotationItem);
+        model.addAttribute("product", product);
+
         return "quotationItems/edit";
     }
 
 
-    @PostMapping("/edit")
-    public String update(@Valid QuotationItem quotationItem, BindingResult result) {
+    @PostMapping("/edit/{quotationId}/{productId}")
+    public String update(@Valid QuotationItem quotationItem, BindingResult result, @PathVariable Long quotationId, @PathVariable Long productId) {
         if (result.hasErrors()) {
             return "quotationItems/edit";
         }
+        quotationItem.setProduct(productService.findById(productId));
+        quotationItem.setQuotation(quotationService.findById(quotationId));
         quotationItemService.save(quotationItem);
-        return "redirect:/quotationItems/all";
+        return "redirect:/quotations/details/"+quotationId;
     }
 
 
-    @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    @RequestMapping("/delete/{quotationId}/{quotationItemId}")
+    public String delete(@PathVariable Long quotationId, @PathVariable Long quotationItemId) {
         try {
-            quotationItemService.delete(id);
-            return "redirect:/quotationItems/all?deleted=true";
+            quotationItemService.delete(quotationItemId);
+            return "redirect:/quotations/details/" + quotationId + "?deleted=true";
         } catch (Exception ConstraintViolationException) {
-            return "redirect:/quotationItems/all?error=true";
+            return "redirect:/quotations/details/" + quotationId + "?error=true";
+//            return "redirect:/quotationItems/all?error=true";
         }
     }
 

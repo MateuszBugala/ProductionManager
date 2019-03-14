@@ -86,9 +86,9 @@ public class QuotationController {
     public String delete(@PathVariable Long id) {
         try {
             quotationService.delete(id);
-            return "redirect:/quotations/all?deleted=true";
+            return "redirect:/quotations/all/";
         } catch (Exception ConstraintViolationException) {
-            return "redirect:/quotations/all?error=true";
+            return "redirect:/quotations/details/" + id + "?error=true";
         }
     }
 

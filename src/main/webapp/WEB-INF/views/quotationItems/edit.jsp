@@ -3,15 +3,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Quotation Item - add</title>
+    <title>Quotation Item - edit</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
 <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
 
-<h1>Add item to quotation:</h1>
-
+<h1>Edit item:</h1>
+<%--TEST-----------------%>
+quotationId:
+${quotationItem.quotation.id}
+productId:
+${product.id}
+<%--TEST-----------------%>
 <table border="1" style="text-align: center">
 
     <thead>
@@ -50,10 +55,10 @@
     </tbody>
 </table>
 
-<form:form method="post" modelAttribute="quotationItem" action="/quotationItems/add/${quotationId}/${productId}">
+<form:form method="post" modelAttribute="quotationItem" action="/quotationItems/edit/${quotationItem.quotation.id}/${product.id}">
+    <form:hidden path="id"/>
+
     <table>
-
-
         <tr>
             <td>Quantity:</td>
             <td><form:input path="quantity"/><br></td>
@@ -83,7 +88,7 @@
 
     </table>
 
-    <input type="submit" value="Add" style="margin-top: 30px">
+    <input type="submit" value="Save changes" style="margin-top: 30px">
 
 </form:form>
 
