@@ -15,7 +15,7 @@
     </div>
     <div class="w3-display-middle w3-container w3-xlarge">
         <p>
-            <button onclick="location.href='/login'" class="w3-button w3-black w3-xxlarge">Log in</button>
+            <button onclick="location.href='/login/'" class="w3-button w3-black w3-xxlarge">Log in</button>
         </p>
         <p>
             <button onclick="location.href='/users/add'" class="w3-button w3-black w3-xxlarge">Create an user</button>

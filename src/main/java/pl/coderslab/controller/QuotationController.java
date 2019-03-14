@@ -95,22 +95,9 @@ public class QuotationController {
 
     @GetMapping("/addItem/{id}")
     public String addItem(@PathVariable Long id, Model model) {
-//        QuotationItem quotationItem = new QuotationItem(quotationService.findById(id));
-//        model.addAttribute("quotationItem", quotationItem);
         model.addAttribute("products", productService.findAll());
         return "quotationItems/productlist";
     }
-
-
-//    @PostMapping("/addItem")
-//    public String save(@Valid Quotation quotation, BindingResult result, HttpSession session) {
-//        if (result.hasErrors()) {
-//            return "quotations/add";
-//        }
-//        User user = (User)session.getAttribute("currentUser");
-//        quotationService.create(quotation, user);
-//        return "redirect:/quotations/all";
-//    }
 
 
     @RequestMapping("/sent/{id}")

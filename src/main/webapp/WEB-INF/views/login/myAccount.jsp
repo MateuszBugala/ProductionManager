@@ -33,7 +33,7 @@
 
 </table>
 
-<h4><a href="http://localhost:8080/login/logout">Log out</a></h4>
+<h4><a href="http://localhost:8080/logout">Log out</a></h4>
 
 </body>
 </html>
