@@ -39,7 +39,6 @@
 
 </table>
 
-<%--<h4><a href="http://localhost:8080/quotations/details/${quotationItem.quotation.id}">Back to quotation</a></h4>--%>
 <h4><a href="http://localhost:8080/quotations/details/${id}">Back to quotation</a></h4>
 
 </body>

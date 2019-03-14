@@ -31,7 +31,7 @@
             <td>${product.productGroup.name}</td>
             <td>${product.notes}</td>
 
-            <td style="width: 50px"><a href="/quotationItems/add/${product.id}" >Add to quotation</a></td>
+            <%--<td style="width: 50px"><a href="/quotationItems/add/${product.id}" >Add to quotation</a></td>--%>
             <td style="width: 50px"><a href="/products/details/${product.id}" >Details</a></td>
         </tr>
     </c:forEach>

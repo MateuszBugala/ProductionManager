@@ -98,7 +98,7 @@ public class QuotationController {
 //        QuotationItem quotationItem = new QuotationItem(quotationService.findById(id));
 //        model.addAttribute("quotationItem", quotationItem);
         model.addAttribute("products", productService.findAll());
-        return "quotations/productlist";
+        return "quotationItems/productlist";
     }
 
 
