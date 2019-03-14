@@ -12,6 +12,7 @@ import pl.coderslab.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -23,9 +24,14 @@ public class HomeController {
     private UserService userService;
 
     @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("user", new User());
-        return "users/login";
+    public String login(Model model, HttpSession session) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        if (currentUser != null) {
+            return "redirect:/dashboard";
+        } else {
+            model.addAttribute("user", new User());
+            return "users/login";
+        }
     }
 
 
@@ -42,12 +48,23 @@ public class HomeController {
 
         if (authorizedUser != null) {
             model.addAttribute("currentUser", authorizedUser);
-//            todo należy zmienić na redirect po utworzeniu kontrolera dla app
-            return "representatives/home";
+            return "redirect:/dashboard";
         } else {
             return "redirect:/login?error=true";
         }
 
+    }
+
+    @RequestMapping("/dashboard")
+    public String loginSuccess() {
+        return "main";
+    }
+
+//    poniższe działa tylk po dodaniu session.invalidate() również w widoku
+    @RequestMapping("/logout")
+    public String logout(HttpSession session, Model model) {
+        session.invalidate();
+        return "users/logout";
     }
 
 }

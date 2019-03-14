@@ -10,6 +10,7 @@ import pl.coderslab.model.UserGroup;
 import pl.coderslab.service.UserGroupService;
 import pl.coderslab.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -79,6 +80,16 @@ public class UserController {
             return "redirect:/users/all?deleted=true";
         } catch (Exception ConstraintViolationException) {
             return "redirect:/users/all?error=true";
+        }
+    }
+
+    @RequestMapping("/myAccount/{id}")
+    public String all(Model model, @PathVariable Long id, HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        if (user.getId() == id) {
+            return "users/myAccount";
+        } else {
+            return "redirect:/dashboard";
         }
     }
 }
