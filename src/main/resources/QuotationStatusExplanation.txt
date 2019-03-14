@@ -1,0 +1,4 @@
+1 - quotation in creation process, not sent to production yet
+2 - quotation sent to production
+3 - quotation quoted by production
+4 - quotation approved by representative

@@ -68,6 +68,9 @@
 <c:if test ="${not empty param.deleted}">
     <h4 style="color: red"><span>product has been deleted</span></h4>
 </c:if>
+<c:if test ="${not empty param.quoted}">
+    <h4 style="color: red"><span>product has been quoted and cannot be edited <br> Please create a new product</span></h4>
+</c:if>
 
 
 <h4><a href="http://localhost:8080/products/add">Add a new product</a></h4>

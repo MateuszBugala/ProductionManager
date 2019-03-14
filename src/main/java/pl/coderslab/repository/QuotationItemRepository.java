@@ -9,4 +9,6 @@ public interface QuotationItemRepository extends JpaRepository<QuotationItem,Lon
 
     List<QuotationItem> findAllByQuotationId (Long id);
 
+    List<QuotationItem> findAllByProductId (Long id);
+
 }

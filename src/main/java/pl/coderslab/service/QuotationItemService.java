@@ -36,4 +36,8 @@ public class QuotationItemService {
     public List<QuotationItem> findAllByQuotationId(Long id) {
         return quotationItemRepository.findAllByQuotationId(id);
     }
+
+    public List<QuotationItem> findAllByProductId(Long id) {
+        return quotationItemRepository.findAllByProductId(id);
+    }
 }

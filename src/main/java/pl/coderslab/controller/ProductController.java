@@ -5,14 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.model.Product;
-import pl.coderslab.model.ProductColor;
-import pl.coderslab.model.ProductGroup;
-import pl.coderslab.model.ProductMaterial;
-import pl.coderslab.service.ProductColorService;
-import pl.coderslab.service.ProductGroupService;
-import pl.coderslab.service.ProductMaterialService;
-import pl.coderslab.service.ProductService;
+import pl.coderslab.model.*;
+import pl.coderslab.service.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,6 +27,9 @@ public class ProductController {
 
     @Autowired
     private ProductMaterialService productMaterialService;
+
+    @Autowired
+    private QuotationItemService quotationItemService;
 
 
     @ModelAttribute("productGroups")
@@ -88,12 +85,17 @@ public class ProductController {
 
     @GetMapping("/edit/{id}")
     public String update(@PathVariable Long id, Model model) {
-        Product product = productService.findById(id);
-        List<ProductMaterial> productMaterials= productMaterialService.findProductMaterialsByProducts(product);
-        product.setProductMaterials(productMaterials);
-        model.addAttribute("product", product);
+//        sprawdzenie czy produkt był już kiedyś wyceniany:
+        if (quotationItemService.findAllByProductId(id).size() == 0) {
+            Product product = productService.findById(id);
+            List<ProductMaterial> productMaterials= productMaterialService.findProductMaterialsByProducts(product);
+            product.setProductMaterials(productMaterials);
+            model.addAttribute("product", product);
 //        model.addAttribute("product", productService.findById(id));
-        return "products/edit";
+            return "products/edit";
+        } else {
+            return "redirect:/products/details/"+id+"?quoted=true";
+        }
     }
 
 
