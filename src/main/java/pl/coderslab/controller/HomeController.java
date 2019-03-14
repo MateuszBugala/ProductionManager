@@ -12,4 +12,9 @@ public class HomeController {
         return "main";
     }
 
+
+    @RequestMapping("/noAccess")
+    public String noAccess() {
+        return "noAccess";
+    }
 }

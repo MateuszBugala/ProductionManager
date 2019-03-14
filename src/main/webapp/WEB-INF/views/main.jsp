@@ -20,8 +20,8 @@
 </div>
 
 <div class="w3-display-topright w3-container w3-large">
-    Hello ${currentUser.firstName}
-    <h4><a href="http://localhost:8080/users/myAccount/${currentUser.id}" class="w3-button w3-black w3-large">My account</a></h4>
+    Hello ${currentUser.firstName}<a href="http://localhost:8080/users/myAccount/${currentUser.id}" class="w3-button w3-black w3-large">My account</a>
+    <h4><a href="http://localhost:8080/login/logout">Log out</a></h4>
 </div>
 
 

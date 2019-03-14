@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.ProductMaterial;
 import pl.coderslab.service.ProductMaterialService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
@@ -30,7 +31,11 @@ public class ProductMaterialController {
 
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 2) {
+            return "redirect:/noAccess";
+        }
         model.addAttribute("productMaterial", new ProductMaterial());
         return "productMaterials/add";
     }
@@ -47,7 +52,11 @@ public class ProductMaterialController {
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, Model model, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 2) {
+            return "redirect:/noAccess";
+        }
         model.addAttribute("productMaterial", productMaterialService.findById(id));
         return "productMaterials/edit";
     }
@@ -64,7 +73,11 @@ public class ProductMaterialController {
 
 
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 2) {
+            return "redirect:/noAccess";
+        }
         try {
             productMaterialService.delete(id);
             return "redirect:/productMaterials/all?deleted=true";
