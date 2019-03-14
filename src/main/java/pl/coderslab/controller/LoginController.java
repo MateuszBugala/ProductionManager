@@ -20,11 +20,12 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+//    widok loginSuccess jest, aby "zgubić" parametry doklejane kiedy był redirect:/dashboard
     @GetMapping("/")
     public String login(Model model, HttpSession session) {
         User currentUser = (User) session.getAttribute("currentUser");
         if (currentUser != null) {
-            return "redirect:/dashboard";
+            return "login/loginSuccess";
         } else {
             model.addAttribute("user", new User());
             return "login/login";
@@ -46,7 +47,7 @@ public class LoginController {
             Long userGroupId = authorizedUser.getUserGroup().getId();
             model.addAttribute("currentUser", authorizedUser);
             model.addAttribute("userGroup", userGroupId);
-            return "redirect:/dashboard";
+            return "login/loginSuccess";
         } else {
             return "redirect:/login/?error=true";
         }

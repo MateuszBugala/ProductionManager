@@ -33,7 +33,11 @@ public class UserController {
 
 
     @RequestMapping("/all")
-    public String all(Model model) {
+    public String all(Model model, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId != 3) {
+            return "redirect:/noAccess";
+        }
         model.addAttribute("users", userService.findAll());
         return "users/all";
     }
@@ -52,14 +56,21 @@ public class UserController {
             return "users/add";
         }
         userService.save(user);
-        return "redirect:/users/all";
+        return "redirect:/";
     }
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
-        return "users/edit";
+    public String update(@PathVariable Long id, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (user.getId() == id || userGroupId == 3) {
+            model.addAttribute("user", userService.findById(id));
+            return "users/edit";
+        } else {
+            return "redirect:/noAccess";
+        }
+
     }
 
 
@@ -74,7 +85,11 @@ public class UserController {
 
 
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, HttpSession session) {
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId != 3) {
+            return "redirect:/noAccess";
+        }
         try {
             userService.delete(id);
             return "redirect:/users/all?deleted=true";
