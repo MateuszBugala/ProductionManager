@@ -65,6 +65,15 @@ public class ProductController {
         return "products/details";
     }
 
+    @RequestMapping("/det/{id}")
+    public String det(@PathVariable Long id, Model model) {
+        Product product = productService.findById(id);
+        List<ProductMaterial> productMaterials= productMaterialService.findProductMaterialsByProducts(product);
+        product.setProductMaterials(productMaterials);
+        model.addAttribute("product", product);
+        return "quotationItems/productDetails";
+    }
+
 
     @GetMapping("/add")
     public String add(Model model) {

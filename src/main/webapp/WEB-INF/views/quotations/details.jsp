@@ -8,6 +8,7 @@
 <body>
 
 <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<button type="button" name="back" onclick="history.back()">Back</button>
 
 <h3>Quotations details:</h3>
 
@@ -98,7 +99,8 @@
 
 
 
-<h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>
+<%--<h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>--%>
+
 
 <button onclick="location.href='http://localhost:8080/quotations/sent/${quotation.id}'" type="button">Send to Production Department</button>
 

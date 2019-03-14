@@ -8,6 +8,7 @@
 <body>
 
 <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<button type="button" name="back" onclick="history.back()">Back</button>
 
 <h3>Products list:</h3>
 
@@ -32,14 +33,16 @@
             <td>${product.notes}</td>
 
             <td style="width: 50px"><a href="/quotationItems/add/${id}/${product.id}" >Add to quotation</a></td>
-            <td style="width: 50px"><a href="/products/details/${product.id}" >Details</a></td>
+            <%--do zmiany--%>
+            <td style="width: 50px"><a href="/products/det/${product.id}" >Details</a></td>
         </tr>
     </c:forEach>
     </tbody>
 
 </table>
 
-<h4><a href="http://localhost:8080/quotations/details/${id}">Back to quotation</a></h4>
+<%--<h4><a href="http://localhost:8080/quotations/details/${id}">Back to quotation</a></h4>--%>
+
 
 </body>
 </html>
