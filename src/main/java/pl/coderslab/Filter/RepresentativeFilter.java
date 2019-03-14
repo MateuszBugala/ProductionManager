@@ -7,13 +7,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/representatives/*"/*, "/password/*"*/})
+@WebFilter(urlPatterns = {"/userGroups/*"/*, "/password/*"*/})
 public class RepresentativeFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        chain.doFilter(req, resp);
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+        HttpSession session = request.getSession(false);
+
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        boolean loggedIn = ((session != null) && (userGroupId == 3) );
+
+
+        if (loggedIn) {
+            chain.doFilter(request, response);
+        } else {
+            response.sendRedirect("/noAccess");
+        }
+
     }
 
 
@@ -35,7 +48,7 @@ public class RepresentativeFilter implements Filter {
 //        }
 //
 //    }
-//
+
 
     public void init(FilterConfig config) throws ServletException {
 

@@ -10,7 +10,7 @@ public class HomeController {
 
     @RequestMapping("/dashboard")
     public String loginSuccess() {
-        return "main";
+        return "dashboard";
     }
 
 
