@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Products - list</title>
+    <title>Quotation - add items</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -31,7 +31,7 @@
             <td>${product.productGroup.name}</td>
             <td>${product.notes}</td>
 
-            <td style="width: 50px"><a href="/quotationItems/add/${product.id}" >Add to quotation</a></td>
+            <td style="width: 50px"><a href="/quotationItems/add/${id}/${product.id}" >Add to quotation</a></td>
             <td style="width: 50px"><a href="/products/details/${product.id}" >Details</a></td>
         </tr>
     </c:forEach>
@@ -39,7 +39,8 @@
 
 </table>
 
-<h4><a href="http://localhost:8080/products/add">Add a new product</a></h4>
+<%--<h4><a href="http://localhost:8080/quotations/details/${quotationItem.quotation.id}">Back to quotation</a></h4>--%>
+<h4><a href="http://localhost:8080/quotations/details/${id}">Back to quotation</a></h4>
 
 </body>
 </html>

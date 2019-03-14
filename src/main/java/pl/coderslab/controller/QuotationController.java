@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.model.Product;
-import pl.coderslab.model.ProductMaterial;
-import pl.coderslab.model.Quotation;
-import pl.coderslab.model.User;
+import pl.coderslab.model.*;
+import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
 import pl.coderslab.service.QuotationService;
 
@@ -31,6 +29,9 @@ public class QuotationController {
 
     @Autowired
     private QuotationItemService quotationItemService;
+
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping("/all")
     public String all(Model model) {
@@ -71,13 +72,13 @@ public class QuotationController {
     }
 
 
-    @PostMapping("/edit")
-    public String update(@Valid Quotation quotation, BindingResult result) {
+    @PostMapping("/edit/{id}")
+    public String update(@Valid Quotation quotation, BindingResult result, @PathVariable Long id) {
         if (result.hasErrors()) {
             return "quotations/edit";
         }
         quotationService.update(quotation);
-        return "redirect:/quotations/all";
+        return "redirect:/quotations/details/"+id;
     }
 
 
@@ -90,4 +91,24 @@ public class QuotationController {
             return "redirect:/quotations/all?error=true";
         }
     }
+
+
+    @GetMapping("/addItem/{id}")
+    public String addItem(@PathVariable Long id, Model model) {
+//        QuotationItem quotationItem = new QuotationItem(quotationService.findById(id));
+//        model.addAttribute("quotationItem", quotationItem);
+        model.addAttribute("products", productService.findAll());
+        return "quotations/productlist";
+    }
+
+
+//    @PostMapping("/addItem")
+//    public String save(@Valid Quotation quotation, BindingResult result, HttpSession session) {
+//        if (result.hasErrors()) {
+//            return "quotations/add";
+//        }
+//        User user = (User)session.getAttribute("currentUser");
+//        quotationService.create(quotation, user);
+//        return "redirect:/quotations/all";
+//    }
 }

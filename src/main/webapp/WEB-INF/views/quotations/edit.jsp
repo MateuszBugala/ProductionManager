@@ -11,7 +11,7 @@
 
 <h1>Edit a Quotation:</h1>
 
-<form:form method="post" modelAttribute="quotation" action="/quotations/edit">
+<form:form method="post" modelAttribute="quotation" action="/quotations/edit/${id}">
     <form:hidden path="id"/>
 
     <table>

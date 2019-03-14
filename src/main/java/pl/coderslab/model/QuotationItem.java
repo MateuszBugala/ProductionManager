@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,10 +22,26 @@ public class QuotationItem {
 
     private int quantity;
     private BigDecimal price;
+
+//    bez poniższego nie działa wprowadzenie daty podczas dodawania QuotationItem
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate requiredDeliveryDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate actualDeliveryDate;
     private String notes;
 
+    public QuotationItem() {
+    }
+
+    public QuotationItem(Quotation quotation) {
+        this.quotation = quotation;
+    }
+
+    public QuotationItem(Product product, Quotation quotation) {
+        this.product = product;
+        this.quotation = quotation;
+    }
 
     public Long getId() {
         return id;

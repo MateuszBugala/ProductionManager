@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.model.Product;
 import pl.coderslab.model.QuotationItem;
 import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
+import pl.coderslab.service.QuotationService;
 
 import javax.validation.Valid;
 
@@ -24,6 +26,9 @@ public class QuotationItemController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private QuotationService quotationService;
+
     @RequestMapping("/all")
     public String all(Model model) {
         model.addAttribute("quotationItems", quotationItemService.findAll());
@@ -31,21 +36,23 @@ public class QuotationItemController {
     }
 
 
-    @GetMapping("/add/{id}")
-    public String add(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productService.findById(id));
+    @GetMapping("/add/{quotationId}/{productId}")
+    public String add(@PathVariable Long quotationId, @PathVariable Long productId, Model model) {
+        model.addAttribute("product", productService.findById(productId));
         model.addAttribute("quotationItem", new QuotationItem());
         return "quotationItems/add";
     }
 
 
-    @PostMapping("/add")
-    public String save(@Valid QuotationItem quotationItem, BindingResult result) {
+    @PostMapping("/add/{quotationId}/{productId}")
+    public String save(@Valid QuotationItem quotationItem, BindingResult result, @PathVariable Long quotationId, @PathVariable Long productId) {
         if (result.hasErrors()) {
             return "quotationItems/add";
         }
+        quotationItem.setProduct(productService.findById(productId));
+        quotationItem.setQuotation(quotationService.findById(quotationId));
         quotationItemService.save(quotationItem);
-        return "redirect:/quotationItems/all";
+        return "redirect:/quotations/details/"+quotationId;
     }
 
 

@@ -10,8 +10,12 @@
 
 <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
 
-<h1>Add item below to quotation:</h1>
+<h1>Add item to quotation:</h1>
 
+<%--TEST---------------------------------------%>
+${quotationId}
+${productId}
+<%--TEST---------------------------------------%>
 
 <table border="1" style="text-align: center">
 
@@ -51,7 +55,7 @@
     </tbody>
 </table>
 
-<form:form method="post" modelAttribute="quotationItem" action="/quotationItems/add">
+<form:form method="post" modelAttribute="quotationItem" action="/quotationItems/add/${quotationId}/${productId}">
     <table>
 
 
@@ -67,12 +71,12 @@
         </tr>
         <tr>
             <td>Required Delivery Date:</td>
-            <td><form:input path="requiredDeliveryDate"/><br></td>
+            <td><form:input type="date" path="requiredDeliveryDate"/><br></td>
             <td><form:errors path="requiredDeliveryDate" cssClass="error-message" element="div"/></td>
         </tr>
         <tr>
             <td>Actual Delivery Date:</td>
-            <td><form:input path="actualDeliveryDate"/><br></td>
+            <td><form:input type="date" path="actualDeliveryDate"/><br></td>
             <td><form:errors path="actualDeliveryDate" cssClass="error-message" element="div"/></td>
         </tr>
         <tr>

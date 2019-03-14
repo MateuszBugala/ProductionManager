@@ -95,7 +95,7 @@
     <h4 style="color: red"><span>Quotation has been deleted</span></h4>
 </c:if>
 
-<h4><a href="">Add products to this quotation</a></h4>
+<h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
 
 <h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>
 
