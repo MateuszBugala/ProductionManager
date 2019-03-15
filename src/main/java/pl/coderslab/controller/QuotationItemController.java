@@ -15,6 +15,7 @@ import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
 import pl.coderslab.service.QuotationService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -53,7 +54,7 @@ public class QuotationItemController {
         quotationItem.setProduct(productService.findById(productId));
         quotationItem.setQuotation(quotationService.findById(quotationId));
         quotationItemService.save(quotationItem);
-        return "redirect:/quotations/details/"+quotationId;
+        return "redirect:/quotations/details/" + quotationId;
     }
 
 
@@ -76,19 +77,27 @@ public class QuotationItemController {
         quotationItem.setProduct(productService.findById(productId));
         quotationItem.setQuotation(quotationService.findById(quotationId));
         quotationItemService.save(quotationItem);
-        return "redirect:/quotations/details/"+quotationId;
+        return "redirect:/quotations/details/" + quotationId;
     }
 
 
     @RequestMapping("/delete/{quotationId}/{quotationItemId}")
     public String delete(@PathVariable Long quotationId, @PathVariable Long quotationItemId) {
-        try {
-            quotationItemService.delete(quotationItemId);
-            return "redirect:/quotations/details/" + quotationId + "?deleted=true";
-        } catch (Exception ConstraintViolationException) {
-            return "redirect:/quotations/details/" + quotationId + "?error=true";
+        int quotStat = quotationService.findById(quotationId).getStatus();
+        if (quotStat == 1) {
+            try {
+                quotationItemService.delete(quotationItemId);
+                return "redirect:/quotations/details/" + quotationId + "?deleted=true";
+            } catch (Exception ConstraintViolationException) {
+                return "redirect:/quotations/details/" + quotationId + "?error=true";
 //            return "redirect:/quotationItems/all?error=true";
+            }
+        } else {
+            return "redirect:/quotations/details/" + quotationId + "?sent=true";
+//            return "redirect:/noAccess";
         }
+
+
     }
 
 }
