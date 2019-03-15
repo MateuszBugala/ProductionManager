@@ -9,7 +9,7 @@
 
 <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
 
-<h3>Quotation number ${id} has been sent!</h3>
+<h3>Status of quotation ${id} has been changed!</h3>
 
 <h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>
 

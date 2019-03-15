@@ -41,9 +41,14 @@ public class QuotationController {
 
 
     @RequestMapping("/details/{id}")
-    public String details(@PathVariable Long id, Model model) {
+    public String details(@PathVariable Long id, Model model, HttpSession session) {
         model.addAttribute("quotation", quotationService.findById(id));
         model.addAttribute("quotationItems", quotationItemService.findAllByQuotationId(id));
+        Long userGroup = (Long) session.getAttribute("userGroup");
+        if (userGroup == 1) {
+            return "quotations/ug1/details";
+        }
+//        todo należy dodać forward na kolejne 2 widoki dla pozostałych userGroup
         return "quotations/details";
     }
 
@@ -59,14 +64,15 @@ public class QuotationController {
         if (result.hasErrors()) {
             return "quotations/add";
         }
-        User user = (User)session.getAttribute("currentUser");
+        User user = (User) session.getAttribute("currentUser");
         quotationService.create(quotation, user);
         return "redirect:/quotations/all";
     }
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, Model model, HttpSession session) {
+
         model.addAttribute("quotation", quotationService.findById(id));
         return "quotations/edit";
     }
@@ -78,7 +84,7 @@ public class QuotationController {
             return "quotations/edit";
         }
         quotationService.update(quotation);
-        return "redirect:/quotations/details/"+id;
+        return "redirect:/quotations/details/" + id;
     }
 
 
@@ -104,10 +110,22 @@ public class QuotationController {
     public String sent(@PathVariable Long id) {
         List<QuotationItem> quotationItems = quotationItemService.findAllByQuotationId(id);
         if (quotationItems.size() != 0) {
-            quotationService.changeStatus(id,2);
+            quotationService.changeStatus(id, 2);
             return "quotations/sent";
         } else {
             return "redirect:/quotations/details/" + id + "?noItems=true";
         }
+    }
+
+    @RequestMapping("/quoted/{id}")
+    public String quoted(@PathVariable Long id) {
+        quotationService.changeStatus(id, 3);
+        return "quotations/sent";
+    }
+
+    @RequestMapping("/approved/{id}")
+    public String approved(@PathVariable Long id) {
+        quotationService.changeStatus(id, 4);
+        return "quotations/sent";
     }
 }
