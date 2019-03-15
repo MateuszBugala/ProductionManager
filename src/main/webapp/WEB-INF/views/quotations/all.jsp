@@ -15,7 +15,8 @@
 
     <thead>
     <th>Number</th>
-    <th>Customer Name</th>
+    <%--produkcja nie powinna widzieć poniższego--%>
+    <%--<th>Customer Name</th>--%>
     <th>Created By</th>
     <th>Status</th>
     <th colspan="1">Actions</th>
@@ -25,7 +26,7 @@
     <c:forEach items="${quotations}" var="quotation" varStatus="stat">
         <tr>
             <td>${quotation.id}</td>
-            <td>${quotation.customerName}</td>
+            <%--<td>${quotation.customerName}</td>--%>
             <td>${quotation.createdBy.fullName}</td>
             <td>${quotation.status}</td>
 

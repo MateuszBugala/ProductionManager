@@ -7,7 +7,15 @@
 </head>
 <body>
 
-<%--różnica w widoku dla userGroup--%>
+<%--ważne różnica w widoku dla userGroup--%>
+<%--<c:choose>--%>
+    <%--<c:when test="${userGroup == 2}">--%>
+    <%--</c:when>--%>
+
+    <%--<c:otherwise>--%>
+    <%--</c:otherwise>--%>
+<%--</c:choose>--%>
+
 <c:choose>
     <c:when test="${userGroup == 2}">
         <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>

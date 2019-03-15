@@ -16,7 +16,7 @@
 <script>
     var timer = setTimeout(function() {
         window.location='http://localhost:8080'
-    }, 2000);
+    }, /*2000*/ 50);
 </script>
 
 
