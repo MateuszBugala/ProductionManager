@@ -102,7 +102,12 @@ public class QuotationController {
 
     @RequestMapping("/sent/{id}")
     public String sent(@PathVariable Long id) {
-        quotationService.changeStatus(id,2);
-        return "quotations/sent";
+        List<QuotationItem> quotationItems = quotationItemService.findAllByQuotationId(id);
+        if (quotationItems.size() != 0) {
+            quotationService.changeStatus(id,2);
+            return "quotations/sent";
+        } else {
+            return "redirect:/quotations/details/" + id + "?noItems=true";
+        }
     }
 }

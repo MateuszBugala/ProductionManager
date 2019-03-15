@@ -94,6 +94,9 @@
         <c:if test="${not empty param.deleted}">
             <h4 style="color: red"><span>Item has been deleted</span></h4>
         </c:if>
+        <c:if test="${not empty param.noItems}">
+            <h4 style="color: red"><span>Quotation with no items cannot be sent</span></h4>
+        </c:if>
 
         <button onclick="location.href='http://localhost:8080/quotations/sent/${quotation.id}'" type="button">Send to Production Department</button>
     </c:when>
