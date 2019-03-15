@@ -55,36 +55,29 @@ ${product.id}
     </tbody>
 </table>
 
-<form:form method="post" modelAttribute="quotationItem" action="/quotationItems/edit/${quotationItem.quotation.id}/${product.id}">
+<form:form method="post" modelAttribute="quotationItem"
+           action="/quotationItems/edit/${quotationItem.quotation.id}/${product.id}">
     <form:hidden path="id"/>
 
     <table>
-        <tr>
-            <td>Quantity:</td>
-            <td><form:input path="quantity"/><br></td>
-            <td><form:errors path="quantity" cssClass="error-message" element="div"/></td>
-        </tr>
+
+        <form:hidden path="quantity"/>
+
         <tr>
             <td>Price:</td>
             <td><form:input path="price"/><br></td>
             <td><form:errors path="price" cssClass="error-message" element="div"/></td>
         </tr>
-        <tr>
-            <td>Required Delivery Date:</td>
-            <td><form:input type="date" path="requiredDeliveryDate"/><br></td>
-            <td><form:errors path="requiredDeliveryDate" cssClass="error-message" element="div"/></td>
-        </tr>
+
+        <form:hidden path="requiredDeliveryDate"/>
+
         <tr>
             <td>Actual Delivery Date:</td>
             <td><form:input type="date" path="actualDeliveryDate"/><br></td>
             <td><form:errors path="actualDeliveryDate" cssClass="error-message" element="div"/></td>
         </tr>
-        <tr>
-            <td>Notes:</td>
-            <td><form:input path="notes"/><br></td>
-            <td><form:errors path="notes" cssClass="error-message" element="div"/></td>
-        </tr>
 
+        <form:hidden path="notes"/>
 
     </table>
 

@@ -59,13 +59,29 @@ public class QuotationItemController {
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, Model model, HttpSession session) {
         QuotationItem quotationItem = quotationItemService.findById(id);
+        Long quotationId = quotationItem.getQuotation().getId();
         Product product = quotationItem.getProduct();
         model.addAttribute("quotationItem", quotationItem);
         model.addAttribute("product", product);
 
-        return "quotationItems/edit";
+        Long userGroup = (Long) session.getAttribute("userGroup");
+        int quotStat = quotationService.findById(quotationId).getStatus();
+
+        if (userGroup == 1 && (quotStat == 1 || quotStat == 2)) {
+            return "quotationItems/ug1/edit";
+        } else if (userGroup == 1 && (quotStat != 1 && quotStat != 2)) {
+            return "redirect:/noAccess";
+        }
+
+        else if (userGroup == 2 && (quotStat == 2 || quotStat == 3)) {
+            return "quotationItems/ug2/edit";
+        } else if (userGroup == 2 && (quotStat != 2 && quotStat != 3)) {
+            return "redirect:/noAccess";
+        }
+
+        return "quotationItems/ug3/edit";
     }
 
 
