@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/quotations/add/*", "/quotations/addItem/*" , "/quotationItems/add/*"})
+@WebFilter(urlPatterns = {"/quotations/add/*", "/quotations/addItem/*" , "/quotations/delete/*" ,
+        "/quotationItems/add/*", "/quotationItems/delete/*"})
 public class ProductionFilter implements Filter {
     public void destroy() {
     }
