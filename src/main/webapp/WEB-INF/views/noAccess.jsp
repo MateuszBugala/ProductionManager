@@ -12,7 +12,7 @@
 <script>
     var timer = setTimeout(function() {
         history.back()
-    }, 3000);
+    }, 1000);
 </script>
 
 </body>

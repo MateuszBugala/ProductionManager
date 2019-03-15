@@ -11,6 +11,15 @@
 
 <h3>Quotations list:</h3>
 
+<%--ważne różnica w widoku dla userGroup--%>
+<%--<c:choose>--%>
+<%--<c:when test="${userGroup == 2}">--%>
+<%--</c:when>--%>
+
+<%--<c:otherwise>--%>
+<%--</c:otherwise>--%>
+<%--</c:choose>--%>
+
 <table border="1" style="text-align: center">
 
     <thead>
@@ -30,7 +39,6 @@
             <td>${quotation.createdBy.fullName}</td>
             <td>${quotation.status}</td>
 
-            <%--<td style="width: 50px"><a href="/quotations/add/${product.id}" >Add to quotation</a></td>--%>
             <td style="width: 50px"><a href="/quotations/details/${quotation.id}" >Details</a></td>
         </tr>
     </c:forEach>
