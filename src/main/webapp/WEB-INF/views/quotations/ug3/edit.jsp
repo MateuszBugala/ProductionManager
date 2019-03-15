@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<button onclick="location.href='../../../..'" type="button">HOME</button>
 
 <h1>Edit a Quotation:</h1>
 

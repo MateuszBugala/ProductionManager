@@ -72,9 +72,23 @@ public class QuotationController {
 
     @GetMapping("/edit/{id}")
     public String update(@PathVariable Long id, Model model, HttpSession session) {
-
         model.addAttribute("quotation", quotationService.findById(id));
-        return "quotations/edit";
+        Long userGroup = (Long) session.getAttribute("userGroup");
+        int quotStat = quotationService.findById(id).getStatus();
+
+        if (userGroup == 1 && (quotStat == 1 || quotStat == 2)) {
+            return "quotations/ug1/edit";
+        } else if (userGroup == 1 && (quotStat != 1 && quotStat != 2)) {
+            return "redirect:/noAccess";
+        }
+
+        else if (userGroup == 2 && (quotStat == 2 || quotStat == 3)) {
+            return "quotations/ug2/edit";
+        } else if (userGroup == 2 && (quotStat != 2 && quotStat != 3)) {
+            return "redirect:/noAccess";
+        }
+
+        return "quotations/ug3/edit";
     }
 
 
@@ -105,6 +119,8 @@ public class QuotationController {
         return "quotationItems/productlist";
     }
 
+
+//    changing status of quotation:
 
     @RequestMapping("/sent/{id}")
     public String sent(@PathVariable Long id) {

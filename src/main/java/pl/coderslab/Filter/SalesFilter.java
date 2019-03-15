@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/userGroups/*"/*, "/password/*"*/})
-public class RepresentativeFilter implements Filter {
+@WebFilter(urlPatterns = {"/userGroups/*",
+        "/quotations/quoted/*"})
+public class SalesFilter implements Filter {
     public void destroy() {
     }
 
@@ -18,7 +19,7 @@ public class RepresentativeFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         Long userGroupId = (Long) session.getAttribute("userGroup");
-        boolean loggedIn = ((session != null) && (userGroupId == 3) );
+        boolean loggedIn = (userGroupId != 1);
 
 
         if (loggedIn) {
@@ -28,27 +29,6 @@ public class RepresentativeFilter implements Filter {
         }
 
     }
-
-
-//    MB _____________________
-
-//    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-//        HttpServletRequest request = (HttpServletRequest) req;
-//        HttpServletResponse response = (HttpServletResponse) resp;
-//        HttpSession session = request.getSession(false);
-//
-//        boolean loggedIn = ((session != null) && ((session.getAttribute("loggedUserType").equals("user")
-//                || (session.getAttribute("loggedUserType").equals("admin")))));
-//
-//
-//        if (loggedIn) {
-//            chain.doFilter(request, response);
-//        } else {
-//            response.sendRedirect("/home");
-//        }
-//
-//    }
-
 
     public void init(FilterConfig config) throws ServletException {
 

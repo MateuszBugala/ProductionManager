@@ -14,25 +14,12 @@
 
         <form:form method="post" modelAttribute="quotation" action="/quotations/edit/${id}">
             <form:hidden path="id"/>
+            <%--todo poniższe jest widocznie, nie może tak zostać--%>
+            <form:hidden path="customerName"/><br>
+            <form:hidden path="deliveryTerm"/><br>
+            <form:hidden path="notes"/><br>
 
             <table>
-                <tr>
-                    <td>CustomerName:</td>
-                    <td><form:input path="customerName"/><br></td>
-                    <td><form:errors path="customerName" cssClass="error-message" element="div" /></td>
-                </tr>
-
-                <tr>
-                    <td>Delivery Term:</td>
-                    <td><form:input path="deliveryTerm"/><br></td>
-                    <td><form:errors path="deliveryTerm" cssClass="error-message" element="div" /></td>
-                </tr>
-
-                <tr>
-                    <td>Notes:</td>
-                    <td><form:input path="notes"/><br></td>
-                    <td><form:errors path="notes" cssClass="error-message" element="div" /></td>
-                </tr>
 
                 <tr>
                     <td>Remarks:</td>
