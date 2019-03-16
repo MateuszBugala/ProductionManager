@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/userGroups/*",
+        "/users/all/*","/users/delete/*",
         "/quotations/quoted/*"})
 public class SalesFilter implements Filter {
     public void destroy() {

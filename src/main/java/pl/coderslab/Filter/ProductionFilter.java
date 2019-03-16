@@ -8,8 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/quotations/add/*", "/quotations/addItem/*" , "/quotations/delete/*" ,
-        "/quotationItems/add/*", "/quotationItems/delete/*",
         "/quotations/sent/*", "/quotations/approved/*",
+        "/quotationItems/add/*", "/quotationItems/delete/*",
+        "/users/all/*","/users/delete/*",
         "/userGroups/*",
         "/products/add/*", "/products/edit/*","/products/delete/*",
         "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*",

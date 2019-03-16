@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/users", produces = "text/html; charset=UTF-8")
+@SessionAttributes({"currentUser", "userGroup"})
 public class UserController {
 
     @Autowired
@@ -33,11 +34,7 @@ public class UserController {
 
 
     @RequestMapping("/all")
-    public String all(Model model, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId != 3) {
-            return "redirect:/noAccess";
-        }
+    public String all(Model model) {
         model.addAttribute("users", userService.findAll());
         return "users/all";
     }
@@ -75,21 +72,26 @@ public class UserController {
 
 
     @PostMapping("/edit")
-    public String update(@Valid User user, BindingResult result) {
+    public String update(@Valid User user, BindingResult result, Model model, HttpSession session) {
         if (result.hasErrors()) {
             return "users/edit";
         }
+//        ważne po zmianie danych usera, trzeba przkazać go do sesji
         userService.update(user);
-        return "redirect:/users/all";
+        model.addAttribute("currentUser", user);
+
+        Long userId = user.getId();
+        Long userGroupId = (Long) session.getAttribute("userGroup");
+        if (userGroupId == 3) {
+            return "redirect:/users/all";
+        } else {
+            return "redirect:/users/myAccount/" + userId;
+        }
     }
 
 
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId != 3) {
-            return "redirect:/noAccess";
-        }
+    public String delete(@PathVariable Long id) {
         try {
             userService.delete(id);
             return "redirect:/users/all?deleted=true";
