@@ -10,7 +10,9 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/quotations/add/*", "/quotations/addItem/*" , "/quotations/delete/*" ,
         "/quotationItems/add/*", "/quotationItems/delete/*",
         "/quotations/sent/*", "/quotations/approved/*",
-        "/userGroups/*"})
+        "/userGroups/*",
+        "/products/add/*", "/products/edit/*","/products/delete/*",
+        "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*"})
 public class ProductionFilter implements Filter {
     public void destroy() {
     }
