@@ -61,7 +61,10 @@ ${product.id}
 
     <table>
 
-        <form:hidden path="quantity"/>
+        <tr>
+            <td>Quantity:</td>
+            <td><form:input path="quantity" readonly="true"/><br></td>
+        </tr>
 
         <tr>
             <td>Price:</td>
@@ -69,7 +72,10 @@ ${product.id}
             <td><form:errors path="price" cssClass="error-message" element="div"/></td>
         </tr>
 
-        <form:hidden path="requiredDeliveryDate"/>
+        <tr>
+            <td>Required Delivery Date:</td>
+            <td><form:input type="date" path="requiredDeliveryDate" readonly="true"/><br></td>
+        </tr>
 
         <tr>
             <td>Actual Delivery Date:</td>
@@ -77,8 +83,10 @@ ${product.id}
             <td><form:errors path="actualDeliveryDate" cssClass="error-message" element="div"/></td>
         </tr>
 
-        <form:hidden path="notes"/>
-
+        <tr>
+            <td>Notes:</td>
+            <td><form:input path="notes" readonly="true"/><br></td>
+        </tr>
     </table>
 
     <input type="submit" value="Save changes" style="margin-top: 30px">
