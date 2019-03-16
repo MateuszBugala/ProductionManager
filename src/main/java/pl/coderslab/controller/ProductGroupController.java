@@ -29,11 +29,7 @@ public class ProductGroupController {
 
 
     @GetMapping("/add")
-    public String add(Model model, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId == 2) {
-            return "redirect:/noAccess";
-        }
+    public String add(Model model) {
         model.addAttribute("productGroup", new ProductGroup());
         return "productGroups/add";
     }
@@ -50,11 +46,7 @@ public class ProductGroupController {
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId == 2) {
-            return "redirect:/noAccess";
-        }
+    public String update(@PathVariable Long id, Model model) {
         model.addAttribute("productGroup", productGroupService.findById(id));
         return "productGroups/edit";
     }
@@ -71,11 +63,7 @@ public class ProductGroupController {
 
 
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId == 2) {
-            return "redirect:/noAccess";
-        }
+    public String delete(@PathVariable Long id) {
         try {
             productGroupService.delete(id);
             return "redirect:/productGroups/all?deleted=true";

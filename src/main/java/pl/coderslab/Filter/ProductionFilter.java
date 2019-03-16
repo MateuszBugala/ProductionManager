@@ -13,7 +13,8 @@ import java.io.IOException;
         "/userGroups/*",
         "/products/add/*", "/products/edit/*","/products/delete/*",
         "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*",
-        "/productColors/add/*", "/productColors/edit/*", "/productColors/delete/*"})
+        "/productColors/add/*", "/productColors/edit/*", "/productColors/delete/*",
+        "/productGroups/add/*", "/productGroups/edit/*", "/productGroups/delete/*"})
 public class ProductionFilter implements Filter {
     public void destroy() {
     }
