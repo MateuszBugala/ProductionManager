@@ -12,7 +12,8 @@ import java.io.IOException;
         "/quotations/sent/*", "/quotations/approved/*",
         "/userGroups/*",
         "/products/add/*", "/products/edit/*","/products/delete/*",
-        "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*"})
+        "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*",
+        "/productColors/add/*", "/productColors/edit/*", "/productColors/delete/*"})
 public class ProductionFilter implements Filter {
     public void destroy() {
     }

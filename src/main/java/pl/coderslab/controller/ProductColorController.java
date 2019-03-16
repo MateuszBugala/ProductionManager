@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.ProductColor;
 import pl.coderslab.service.ProductColorService;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
@@ -32,11 +31,7 @@ public class ProductColorController {
 
 
     @GetMapping("/add")
-    public String add(Model model, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId == 2) {
-            return "redirect:/noAccess";
-        }
+    public String add(Model model) {
         model.addAttribute("productColor", new ProductColor());
         return "productColors/add";
     }
@@ -53,11 +48,7 @@ public class ProductColorController {
 
 
     @GetMapping("/edit/{id}")
-    public String update(@PathVariable Long id, Model model, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId == 2) {
-            return "redirect:/noAccess";
-        }
+    public String update(@PathVariable Long id, Model model) {
         model.addAttribute("productColor", productColorService.findById(id));
         return "productColors/edit";
     }
@@ -74,11 +65,7 @@ public class ProductColorController {
 
 
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, HttpSession session) {
-        Long userGroupId = (Long) session.getAttribute("userGroup");
-        if (userGroupId == 2) {
-            return "redirect:/noAccess";
-        }
+    public String delete(@PathVariable Long id) {
         try {
             productColorService.delete(id);
             return "redirect:/productColors/all?deleted=true";
