@@ -8,6 +8,7 @@
 <body>
 
 <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<button onclick="location.href='http://localhost:8080/quotations/all'" type="button">All quotations</button>
 <button type="button" name="back" onclick="history.back()">Back</button>
 
 <h3>Quotations details:</h3>

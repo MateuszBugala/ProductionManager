@@ -12,12 +12,8 @@
 
 <h1>Edit a Quotation:</h1>
 
-        <form:form method="post" modelAttribute="quotation" action="/quotations/edit/${id}">
+        <form:form method="post" modelAttribute="quotation" action="/quotations/edit/ug2/${id}">
             <form:hidden path="id"/>
-            <%--todo poniższe jest widocznie, nie może tak zostać--%>
-            <form:hidden path="customerName"/><br>
-            <form:hidden path="deliveryTerm"/><br>
-            <form:hidden path="notes"/><br>
 
             <table>
 

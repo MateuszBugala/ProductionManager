@@ -101,6 +101,20 @@ public class QuotationController {
         return "redirect:/quotations/details/" + id;
     }
 
+//edycja formularza przez ug2
+    @PostMapping("/edit/ug2/{id}")
+    public String updateUg2(@Valid Quotation quotation, BindingResult result, @PathVariable Long id) {
+        if (result.hasErrors()) {
+            return "quotations/edit";
+        }
+        String remarks = quotation.getRemarks();
+        Quotation quotationFromDB = quotationService.findById(id);
+        quotationFromDB.setRemarks(remarks);
+        quotationService.update(quotationFromDB);
+
+        return "redirect:/quotations/details/" + id;
+    }
+
 
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
