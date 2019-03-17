@@ -46,7 +46,6 @@
             <h4><a href="http://localhost:8080/products/all" class="w3-button w3-black w3-large">Products</a></h4>
             <h4><a href="http://localhost:8080/quotations/all" class="w3-button w3-black w3-large">Quotation</a></h4>
             <h4><a href="http://localhost:8080/users/all" class="w3-button w3-black w3-large">Users</a></h4>
-            <h4><a href="http://localhost:8080/email/" class="w3-button w3-black w3-large">Send email</a></h4>
         </div>
     </c:otherwise>
 
