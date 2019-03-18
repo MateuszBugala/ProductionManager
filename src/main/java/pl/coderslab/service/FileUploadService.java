@@ -23,6 +23,10 @@ public class FileUploadService {
         return fileUploadRepository.findOne(id);
     }
 
+    public FileUpload findById(int id) {
+        return fileUploadRepository.findById(id);
+    }
+
     public void save(FileUpload entity) {
         fileUploadRepository.save(entity);
     }

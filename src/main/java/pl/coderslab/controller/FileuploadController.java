@@ -3,17 +3,16 @@ package pl.coderslab.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import pl.coderslab.model.FileUpload;
 import pl.coderslab.service.FileUploadService;
 
 @Controller
@@ -71,5 +70,23 @@ public class FileuploadController {
         }
         return  "files/success";
     }
+
+
+
+
+    @GetMapping("/download/{id}")
+    public String downloadDocument(@PathVariable int id, HttpServletResponse response) throws IOException {
+
+        FileUpload document = fileUploadService.findById(id);
+
+//        bez poniższego pliki automatycznie otworzą się w przeglądarce
+        response.setContentLength(document.getData().length);
+        response.setHeader("Content-Disposition","attachment; filename=\"" + document.getFileName() +"\"");
+
+        FileCopyUtils.copy(document.getData(), response.getOutputStream());
+
+        return "redirect:/files";
+    }
+
 
 }
