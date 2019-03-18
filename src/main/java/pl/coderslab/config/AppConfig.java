@@ -1,13 +1,19 @@
 package pl.coderslab.config;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -19,9 +25,14 @@ import pl.coderslab.converter.ProductColorConverter;
 import pl.coderslab.converter.ProductGroupConverter;
 import pl.coderslab.converter.ProductMaterialConverter;
 import pl.coderslab.converter.UserGroupConverter;
+import pl.coderslab.dao.FileUploadDAO;
+import pl.coderslab.dao.FileUploadDAOImpl;
+import pl.coderslab.model.User;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 import java.util.Locale;
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -49,7 +60,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean();
-        emfb.setPersistenceUnitName("prodManPersistenceUnit");        /*ważne ta nazwa musi zgadzać się z persistence.xml*/
+//        emfb.setPersistenceUnitName("prodManPersistenceUnit");
         return emfb;
     }
 
@@ -101,6 +112,55 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         localeResolver.setDefaultLocale(new Locale("pl","PL"));
         return localeResolver; }
 
+
+//File upload ============================
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver getCommonsMultipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(20971520);   // 20MB
+        multipartResolver.setMaxInMemorySize(1048576);  // 1MB
+        return multipartResolver;
+    }
+
+    @Autowired
+    @Bean(name = "fileUploadDao")
+    public FileUploadDAO getUserDao(SessionFactory sessionFactory) {
+        return new FileUploadDAOImpl(sessionFactory);
+    }
+
+    @Autowired
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(DataSource dataSource) {
+
+        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+
+        sessionBuilder.scanPackages("pl.coderslab");
+        sessionBuilder.addProperties(getHibernateProperties());
+
+        return sessionBuilder.buildSessionFactory();
+    }
+
+    @Bean(name = "dataSource")
+    public DataSource getDataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/productionManager?useSSL=false");
+        dataSource.setUsername("root");
+        dataSource.setPassword("coderslab");
+
+        return dataSource;
+    }
+
+    private Properties getHibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("javax.persistence.schema-generation.database.action", "none");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
+        properties.put("hibernate.connection.useUnicode", "true");
+        properties.put("hibernate.connection.characterEncoding", "utf8");
+        properties.put("hibernate.connection.CharSet", "utf8");
+        return properties;
+    }
 
 
 }
