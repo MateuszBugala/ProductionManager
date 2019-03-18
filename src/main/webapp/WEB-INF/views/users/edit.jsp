@@ -13,6 +13,7 @@
 
 <form:form method="post" modelAttribute="user" action="/users/edit">
     <form:hidden path="id"/>
+    <form:hidden path="userGroup.id"/>
 
     <table>
         <tr>
@@ -33,19 +34,9 @@
             <td><form:errors path="email" cssClass="error-message" element="div" /></td>
         </tr>
 
-        <%--<tr>--%>
-            <%--<td>User group:</td>--%>
-            <%--<td><form:select path="userGroup" cssStyle="width: 230px">--%>
-                <%--<form:option value="0" label="Choose user group"/><br>--%>
-                <%--<form:options items="${userGroups}" itemLabel="name" itemValue="id"/><br>--%>
-            <%--</form:select><br></td>--%>
-            <%--<td><form:errors path="userGroup" cssClass="error-message" element="div"/></td>--%>
-        <%--</tr>--%>
-
         <tr>
             <td>User group:</td>
-            <td><form:input path="userGroup" readonly="true"/>
-                    <%--value="${user.userGroup.name}"--%>
+            <td><form:input path="userGroup.name" readonly="true"/>
         </tr>
 
 
