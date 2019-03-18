@@ -44,7 +44,7 @@ public class QuotationController {
     public String details(@PathVariable Long id, Model model, HttpSession session) {
         model.addAttribute("quotation", quotationService.findById(id));
         model.addAttribute("quotationItems", quotationItemService.findAllByQuotationId(id));
-        Long userGroup = (Long) session.getAttribute("userGroup");
+        Long userGroup = (Long) session.getAttribute("currentUserGroup");
         if (userGroup == 1) {
             return "quotations/ug1/details";
         }
@@ -73,7 +73,7 @@ public class QuotationController {
     @GetMapping("/edit/{id}")
     public String update(@PathVariable Long id, Model model, HttpSession session) {
         model.addAttribute("quotation", quotationService.findById(id));
-        Long userGroup = (Long) session.getAttribute("userGroup");
+        Long userGroup = (Long) session.getAttribute("currentUserGroup");
         int quotStat = quotationService.findById(id).getStatus();
 
         if (userGroup == 1 && (quotStat == 1 || quotStat == 2)) {

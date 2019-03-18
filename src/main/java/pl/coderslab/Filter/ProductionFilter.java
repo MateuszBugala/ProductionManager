@@ -25,7 +25,7 @@ public class ProductionFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession(false);
 
-        Long userGroupId = (Long) session.getAttribute("userGroup");
+        Long userGroupId = (Long) session.getAttribute("currentUserGroup");
         boolean loggedIn = (userGroupId != 2);
 
 

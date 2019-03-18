@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path = "/login", produces = "text/html; charset=UTF-8")
-@SessionAttributes({"currentUser", "userGroup"})
+@SessionAttributes({"currentUser", "currentUserGroup"})
 public class LoginController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class LoginController {
         if (authorizedUser != null) {
             Long userGroupId = authorizedUser.getUserGroup().getId();
             model.addAttribute("currentUser", authorizedUser);
-            model.addAttribute("userGroup", userGroupId);
+            model.addAttribute("currentUserGroup", userGroupId);
             return "login/loginSuccess";
         } else {
             return "redirect:/login/?error=true";

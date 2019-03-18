@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/users", produces = "text/html; charset=UTF-8")
-@SessionAttributes({"currentUser", "userGroup"})
+@SessionAttributes({"currentUser", "currentUserGroup"})
 public class UserController {
 
     @Autowired
@@ -60,7 +60,7 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String update(@PathVariable Long id, Model model, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
-        Long userGroupId = (Long) session.getAttribute("userGroup");
+        Long userGroupId = (Long) session.getAttribute("currentUserGroup");
         if (user.getId() == id || userGroupId == 3) {
             model.addAttribute("user", userService.findById(id));
             return "users/edit";
@@ -81,7 +81,7 @@ public class UserController {
         model.addAttribute("currentUser", user);
 
         Long userId = user.getId();
-        Long userGroupId = (Long) session.getAttribute("userGroup");
+        Long userGroupId = (Long) session.getAttribute("currentUserGroup");
         if (userGroupId == 3) {
             return "redirect:/users/all";
         } else {

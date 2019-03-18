@@ -66,7 +66,7 @@ public class QuotationItemController {
         model.addAttribute("quotationItem", quotationItem);
         model.addAttribute("product", product);
 
-        Long userGroup = (Long) session.getAttribute("userGroup");
+        Long userGroup = (Long) session.getAttribute("currentUserGroup");
         int quotStat = quotationService.findById(quotationId).getStatus();
 
         if (userGroup == 1 && (quotStat == 1 || quotStat == 2)) {

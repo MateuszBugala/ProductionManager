@@ -23,7 +23,7 @@
 
 <div class="w3-display-topright w3-container w3-large">
     Hello ${currentUser.firstName}<a href="http://localhost:8080/users/myAccount/${currentUser.id}"
-                                     class="w3-button w3-black w3-large">My account</a>ID: ${userGroup}
+                                     class="w3-button w3-black w3-large">My account</a>ID: ${currentUserGroup}
     <h4><a href="http://localhost:8080/login/logout">Log out</a></h4>
 </div>
 
