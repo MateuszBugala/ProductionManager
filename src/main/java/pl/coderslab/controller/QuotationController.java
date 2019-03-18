@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.model.*;
+import pl.coderslab.service.EmailService;
 import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
 import pl.coderslab.service.QuotationService;
@@ -150,6 +151,13 @@ public class QuotationController {
     @RequestMapping("/quoted/{id}")
     public String quoted(@PathVariable Long id) {
         quotationService.changeStatus(id, 3);
+
+//        email:
+        User user = quotationService.findById(id).getCreatedBy();
+        String userName = user.getFullName();
+        String userEmail = user.getEmail();
+        EmailService.send(userEmail,userName, id);
+
         return "quotations/sent";
     }
 
