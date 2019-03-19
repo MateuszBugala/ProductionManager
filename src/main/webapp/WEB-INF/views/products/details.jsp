@@ -55,7 +55,8 @@
 
             <td>${product.notes}</td>
             <td style="width: 50px"><a href="/products/edit/${product.id}" >Edit</a></td>
-            <td><a href="/files/add/${product.id}" >Add files</a></td>
+            <%--<td><a href="/files/add/${product.id}" >Add files</a></td>--%>
+            <td><a href="/files/all/${product.id}" >Attached files</a></td>
             <td style="width: 50px"><a href="/products/delete/${product.id}" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</a></td>
         </tr>
     </tbody>

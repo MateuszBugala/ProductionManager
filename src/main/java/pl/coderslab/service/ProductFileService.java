@@ -19,6 +19,10 @@ public class ProductFileService {
         return productFileRepository.findAll();
     }
 
+    public List<ProductFile> findAllByProductId(Long id) {
+        return productFileRepository.findAllByProductId(id);
+    }
+
     public ProductFile findById(Long id) {
         return productFileRepository.findOne(id);
     }

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/quotations/add/*", "/quotations/addItem/*" , "/quotations/delete/*" ,
+@WebFilter(urlPatterns = {/*"/quotations/add/*", "/quotations/addItem/*" , "/quotations/delete/*" ,
         "/quotations/sent/*", "/quotations/approved/*",
         "/quotationItems/add/*", "/quotationItems/delete/*",
         "/users/all/*","/users/delete/*",
@@ -15,7 +15,7 @@ import java.io.IOException;
         "/products/add/*", "/products/edit/*","/products/delete/*",
         "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*",
         "/productColors/add/*", "/productColors/edit/*", "/productColors/delete/*",
-        "/productGroups/add/*", "/productGroups/edit/*", "/productGroups/delete/*"})
+        "/productGroups/add/*", "/productGroups/edit/*", "/productGroups/delete/*"*/})
 public class ProductionFilter implements Filter {
     public void destroy() {
     }

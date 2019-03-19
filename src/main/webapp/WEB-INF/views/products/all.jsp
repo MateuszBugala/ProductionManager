@@ -39,6 +39,13 @@
 
 </table>
 
+<c:if test ="${not empty param.error}">
+    <h4 style="color: red"><span>Item cannot be deleted - it has some records in database</span></h4>
+</c:if>
+<c:if test ="${not empty param.deleted}">
+    <h4 style="color: red"><span>Item has been deleted</span></h4>
+</c:if>
+
 <h4><a href="http://localhost:8080/products/add">Add a new product</a></h4>
 
 </body>
