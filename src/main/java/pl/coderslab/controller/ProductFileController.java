@@ -12,24 +12,24 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import pl.coderslab.model.FileUpload;
-import pl.coderslab.service.FileUploadService;
+import pl.coderslab.model.ProductFile;
+import pl.coderslab.service.ProductFileService;
 
 @Controller
 @RequestMapping(path = "/files", produces = "text/html; charset=UTF-8")
-public class FileuploadController {
+public class ProductFileController {
 
     static String fileDescription;
-    static pl.coderslab.model.FileUpload fileUploadObj;
+    static ProductFile fileUploadObj;
     static String saveDirectory = "uploadedFiles";
     static ModelAndView modelViewObj;
 
     @Autowired
-    private FileUploadService fileUploadService;
+    private ProductFileService productFileService;
 
     @GetMapping("/")
     public String showUploadFileForm(ModelMap model) {
-        return "files/fileupload";
+        return "productFiles/fileupload";
     }
 
 
@@ -52,7 +52,7 @@ public class FileuploadController {
                 } else {
                     System.out.println("Attachment Name?= " + aFile.getOriginalFilename() + "\n");
                     if (!aFile.getOriginalFilename().equals("")) {
-                        fileUploadObj = new pl.coderslab.model.FileUpload();
+                        fileUploadObj = new ProductFile();
 
                         fileUploadObj.setFileName(aFile.getOriginalFilename());
                         fileUploadObj.setFileDescription(fileDescription);
@@ -60,7 +60,7 @@ public class FileuploadController {
 
 //                        // Calling The Db Method To Save The Uploaded File In The Db
 //                        FileUploadInDb.fileSaveInDb(fileUploadObj);
-                        fileUploadService.save(fileUploadObj);
+                        productFileService.save(fileUploadObj);
                     }
                 }
                 System.out.println("File Is Successfully Uploaded & Saved In The Database.... Hurrey!\n");
@@ -68,7 +68,7 @@ public class FileuploadController {
         } else {
             // Do Nothing
         }
-        return  "files/success";
+        return  "productFiles/success";
     }
 
 
@@ -77,7 +77,7 @@ public class FileuploadController {
     @GetMapping("/download/{id}")
     public String downloadDocument(@PathVariable int id, HttpServletResponse response) throws IOException {
 
-        FileUpload document = fileUploadService.findById(id);
+        ProductFile document = productFileService.findById(id);
 
 //        bez poniższego pliki automatycznie otworzą się w przeglądarce
         response.setContentLength(document.getData().length);

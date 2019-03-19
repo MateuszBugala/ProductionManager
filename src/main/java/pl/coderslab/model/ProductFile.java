@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 @Entity
 @Table(name = "files_upload")
-public class FileUpload {
+public class ProductFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class FileUpload {
 
     @Override
     public String toString() {
-        return "FileUpload{" +
+        return "ProductFile{" +
                 "id=" + id +
                 ", data=" + Arrays.toString(data) +
                 ", fileName='" + fileName + '\'' +
