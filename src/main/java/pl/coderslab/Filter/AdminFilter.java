@@ -7,16 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/quotations/add/*", "/quotations/addItem/*" , "/quotations/delete/*" ,
-        "/quotations/sent/*", "/quotations/approved/*",
-        "/quotationItems/add/*", "/quotationItems/delete/*",
-        "/users/all/*","/users/delete/*",
-        "/userGroups/*",
-        "/products/add/*", "/products/edit/*","/products/delete/*",
-        "/productMaterials/add/*", "/productMaterials/edit/*", "/productMaterials/delete/*",
-        "/productColors/add/*", "/productColors/edit/*", "/productColors/delete/*",
-        "/productGroups/add/*", "/productGroups/edit/*", "/productGroups/delete/*"})
-public class ProductionFilter implements Filter {
+@WebFilter(urlPatterns = {"/userGroups/add", "/userGroups/delete/*"})
+public class AdminFilter implements Filter {
     public void destroy() {
     }
 
@@ -26,7 +18,7 @@ public class ProductionFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         Long userGroupId = (Long) session.getAttribute("currentUserGroup");
-        boolean loggedIn = (userGroupId != 2);
+        boolean loggedIn = (userGroupId != 3);
 
 
         if (loggedIn) {

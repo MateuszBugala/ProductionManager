@@ -12,6 +12,7 @@ import pl.coderslab.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,10 @@ public class UserController {
 
     @ModelAttribute("userGroups")
     public List<UserGroup> getUserGroups() {
-        return userGroupService.findAll();
+        List<UserGroup> userGroupList = new ArrayList<>();
+        userGroupList.add(userGroupService.findById(1L));
+        userGroupList.add(userGroupService.findById(2L));
+        return userGroupList;
     }
 
 
@@ -49,11 +53,15 @@ public class UserController {
 
     @PostMapping("/add")
     public String save(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "users/add";
+        try {
+            if (result.hasErrors()) {
+                return "users/add";
+            }
+            userService.save(user);
+            return "redirect:/";
+        } catch (Exception e) {
+            return "redirect:/users/add?duplicatedemail=true";
         }
-        userService.save(user);
-        return "redirect:/";
     }
 
 

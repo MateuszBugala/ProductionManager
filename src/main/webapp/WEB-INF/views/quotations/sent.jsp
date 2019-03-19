@@ -13,5 +13,12 @@
 
 <h4><a href="http://localhost:8080/quotations/all">Back to list</a></h4>
 
+<script>
+    var timer = setTimeout(function() {
+        window.location='http://localhost:8080/quotations/all'
+    }, 5000);
+</script>
+
+
 </body>
 </html>

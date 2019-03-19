@@ -1,7 +1,9 @@
-package pl.coderslab.model;
+package pl.coderslab.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.coderslab.model.Product;
+import pl.coderslab.model.User;
 import pl.coderslab.service.*;
 
 import javax.annotation.PostConstruct;

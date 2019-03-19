@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
@@ -16,6 +16,7 @@ public class User {
 
     private String firstName;
     private String lastName;
+
     private String email;
 
     private String password;

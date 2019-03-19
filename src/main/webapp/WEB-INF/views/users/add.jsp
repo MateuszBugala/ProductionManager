@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,6 +10,11 @@
 
 
 </head>
+
+
+<c:if test ="${not empty param.duplicatedemail}">
+    <h4 style="color: red"><span>There is already user with such email - please user other address</span></h4>
+</c:if>
 
 <form:form method="post" modelAttribute="user">
 <div class="container" style="width: 50%; margin-left: 25%">
@@ -47,6 +53,8 @@
     </div>
 </div>
 </form:form>
+
+
 
 </body>
 </html>
