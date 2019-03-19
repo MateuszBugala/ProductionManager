@@ -18,11 +18,13 @@ LOCK TABLES `product_materials` WRITE;
 INSERT INTO `product_materials` VALUES (1,'Solid wood'),(2,'Veneer'),(3,'Hinges'), (4,'Lock');
 UNLOCK TABLES;
 
-LOCK TABLES `products` WRITE;
-INSERT INTO `products` VALUES (1,'code1', 'description1','name1','notes1',100,100,100,1),
-(2,'code2', 'description2','name2','notes2',200,200,200,2),
-(3,'code3', 'description3','name3','notes3',300,300,300,3);
-UNLOCK TABLES;
+-- LOCK TABLES `products` WRITE;
+-- INSERT INTO `products` (id, code, description, name, notes, outerHeight, outerWidth, outerLength, productGroup_id)
+-- VALUES (1,'code1', 'description1','name1','notes1',100,100,100,1),
+-- (2,'code2', 'description2','name2','notes2',200,200,200,2),
+-- (3,'code3', 'description3','name3','notes3',300,300,300,3);
+-- UNLOCK TABLES;
+
 
 -- poniższe zupełnie nie stworzyło userów
 -- LOCK TABLES `users` WRITE;

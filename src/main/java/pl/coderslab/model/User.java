@@ -26,6 +26,16 @@ public class User {
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.MERGE)
     private List<Quotation> quotations = new ArrayList<>();
 
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String password, UserGroup userGroup) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.userGroup = userGroup;
+    }
 
     public Long getId() {
         return id;

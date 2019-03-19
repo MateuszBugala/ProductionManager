@@ -38,6 +38,10 @@ public class UserService {
         userRepository.delete(id);
     }
 
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
+
     public User authorization(String emailCandidate, String passwordCandidate) {
         List<User> userList = userRepository.findAll();
         for (User user : userList) {

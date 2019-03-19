@@ -38,6 +38,19 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
     private List<ProductFile> productFiles = new ArrayList<>();
 
+    public Product() {
+    }
+
+    public Product(String code, String name, String description, ProductGroup productGroup, int outerHeight, int outerWidth, int outerLength, String notes) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+        this.productGroup = productGroup;
+        this.outerHeight = outerHeight;
+        this.outerWidth = outerWidth;
+        this.outerLength = outerLength;
+        this.notes = notes;
+    }
 
     public Long getId() {
         return id;
