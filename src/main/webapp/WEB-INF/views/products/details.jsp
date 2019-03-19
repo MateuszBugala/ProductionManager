@@ -25,7 +25,7 @@
     <th>Colors</th>
     <th>Materials</th>
     <th>Notes</th>
-    <th colspan="2">Actions</th>
+    <th colspan="3">Actions</th>
     </thead>
 
     <tbody>
@@ -55,6 +55,7 @@
 
             <td>${product.notes}</td>
             <td style="width: 50px"><a href="/products/edit/${product.id}" >Edit</a></td>
+            <td><a href="/files/add/${product.id}" >Add files</a></td>
             <td style="width: 50px"><a href="/products/delete/${product.id}" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</a></td>
         </tr>
     </tbody>

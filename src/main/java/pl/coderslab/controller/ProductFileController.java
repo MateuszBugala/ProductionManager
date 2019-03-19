@@ -11,59 +11,52 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.model.ProductFile;
 import pl.coderslab.service.ProductFileService;
+import pl.coderslab.service.ProductService;
 
 @Controller
 @RequestMapping(path = "/files", produces = "text/html; charset=UTF-8")
 public class ProductFileController {
 
-    static String fileDescription;
-    static ProductFile fileUploadObj;
-    static String saveDirectory = "uploadedFiles";
-    static ModelAndView modelViewObj;
-
     @Autowired
     private ProductFileService productFileService;
 
-    @GetMapping("/")
-    public String showUploadFileForm(ModelMap model) {
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("/add/{id}")
+    public String showUploadFileForm(@PathVariable Long id, ModelMap model) {
+        model.addAttribute("productId", id);
         return "productFiles/fileupload";
     }
 
+    @PostMapping("/add/{id}")
+    public String saveUploadedFileInDatabase(@PathVariable Long id, HttpServletRequest request, final @RequestParam CommonsMultipartFile[] attachedFile) throws IllegalStateException, IOException {
 
+        String fileDescription = request.getParameter("description");
 
-    // This Method Is Used To Get Or Retrieve The Uploaded File And Save It In The Db
-    @RequestMapping(value = "uploadFile", method = RequestMethod.POST)
-    public String saveUploadedFileInDatabase(HttpServletRequest request, final @RequestParam CommonsMultipartFile[] attachFileObj) throws IllegalStateException, IOException {
-
-        // Reading File Upload Form Input Parameters
-        fileDescription = request.getParameter("description");
-
-        // Logging The Input Parameter (i.e. File Description) For The Debugging Purpose
-        System.out.println("\nFile Description Is?= " + fileDescription + "\n");
 
         // Determine If There Is An File Upload. If Yes, Attach It To The Client Email
-        if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
-            for (CommonsMultipartFile aFile : attachFileObj) {
+        if ((attachedFile != null) && (attachedFile.length > 0) && (!attachedFile.equals(""))) {
+
+            for (CommonsMultipartFile aFile : attachedFile) {
+
                 if(aFile.isEmpty()) {
                     continue;
                 } else {
-                    System.out.println("Attachment Name?= " + aFile.getOriginalFilename() + "\n");
+//                    System.out.println("Attachment Name?= " + aFile.getOriginalFilename() + "\n");
                     if (!aFile.getOriginalFilename().equals("")) {
-                        fileUploadObj = new ProductFile();
-
+                        ProductFile fileUploadObj = new ProductFile();
                         fileUploadObj.setFileName(aFile.getOriginalFilename());
                         fileUploadObj.setFileDescription(fileDescription);
                         fileUploadObj.setData(aFile.getBytes());
+                        fileUploadObj.setProduct(productService.findById(id));
 
-//                        // Calling The Db Method To Save The Uploaded File In The Db
-//                        FileUploadInDb.fileSaveInDb(fileUploadObj);
                         productFileService.save(fileUploadObj);
                     }
                 }
-                System.out.println("File Is Successfully Uploaded & Saved In The Database.... Hurrey!\n");
+//                System.out.println("File Is Successfully Uploaded & Saved In The Database.... Hurrey!\n");
             }
         } else {
             // Do Nothing

@@ -12,7 +12,7 @@ public class ProductFile {
     private Long id;
 
     @Lob
-    @Column(columnDefinition="BLOB")
+    @Column(columnDefinition="LONGBLOB")
     private byte[] data;
 
     private String fileName;

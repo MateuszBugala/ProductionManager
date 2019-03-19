@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <title>Spring MVC File Upload Example</title>
+    <title>Upload File</title>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#fileUploadErr").hide();
@@ -37,8 +36,8 @@
 </head>
 <body>
 <center>
-    <h2>Spring MVC File Upload Example</h2>
-    <form id="fileUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">
+    <h2>Upload File</h2>
+    <form id="fileUploadForm" method="post" action="/files/add/${productId}" enctype="multipart/form-data">
         <table id="fileUploadFormBeanTable" border="0" width="80%">
             <tr>
                 <td>Description:</td>
@@ -47,7 +46,7 @@
             <tr>
                 <td>Attachment:</td>
                 <td>
-                    <input id="pickUpFileAttachment" type="file" name="attachFileObj" size="60" />
+                    <input id="pickUpFileAttachment" type="file" name="attachedFile" size="60" />
                     <span id="fileUploadErr">Please Upload A File!</span>
                 </td>
             </tr>
