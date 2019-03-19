@@ -35,6 +35,9 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
     private List<QuotationItem> quotationItems = new ArrayList<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private List<ProductFile> productFiles = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -133,6 +136,14 @@ public class Product {
     }
 
 
+    public List<ProductFile> getProductFiles() {
+        return productFiles;
+    }
+
+    public void setProductFiles(List<ProductFile> productFiles) {
+        this.productFiles = productFiles;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -148,6 +159,7 @@ public class Product {
                 ", productMaterials=" + productMaterials +
                 ", notes='" + notes + '\'' +
                 ", quotationItems=" + quotationItems +
+                ", productFiles=" + productFiles +
                 '}';
     }
 }

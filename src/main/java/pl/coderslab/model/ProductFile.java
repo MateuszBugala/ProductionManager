@@ -4,23 +4,39 @@ import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
-@Table(name = "files_upload")
+@Table(name = "product_files")
 public class ProductFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="file_id")
-    private int id;
+    private Long id;
 
     @Lob
-    @Column(name="file_data")
+    @Column(columnDefinition="BLOB")
     private byte[] data;
 
-    @Column(name="file_name")
     private String fileName;
 
-    @Column(name="file_description")
     private String fileDescription;
+
+    @ManyToOne
+    private Product product;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
 
     public String getFileName() {
         return fileName;
@@ -38,12 +54,12 @@ public class ProductFile {
         this.fileDescription = fileDescription;
     }
 
-    public byte[] getData() {
-        return data;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
@@ -53,6 +69,7 @@ public class ProductFile {
                 ", data=" + Arrays.toString(data) +
                 ", fileName='" + fileName + '\'' +
                 ", fileDescription='" + fileDescription + '\'' +
+                ", product=" + product +
                 '}';
     }
 }

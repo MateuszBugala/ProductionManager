@@ -75,7 +75,7 @@ public class ProductFileController {
 
 
     @GetMapping("/download/{id}")
-    public String downloadDocument(@PathVariable int id, HttpServletResponse response) throws IOException {
+    public String downloadDocument(@PathVariable Long id, HttpServletResponse response) throws IOException {
 
         ProductFile document = productFileService.findById(id);
 
