@@ -1,10 +1,10 @@
 <header>
     <!-- Navbar -->
     <div class="w3-top">
-        <div class="w3-bar w3-theme-d2 w3-left-align">
+        <div class="w3-bar w3-theme-d2 w3-left-align w3-xlarge">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
                href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Main menu</a>
+            <a href="http://localhost:8080/dashboard" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Main menu</a>
 
 
             <div class="w3-dropdown-hover w3-hide-small">
