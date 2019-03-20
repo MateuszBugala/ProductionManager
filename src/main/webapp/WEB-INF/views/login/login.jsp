@@ -4,12 +4,14 @@
 <html>
 <head>
     <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <%--<meta name="viewport" content="width=device-width, initial-scale=1">--%>
+    <%--<link rel="stylesheet" href="/css/w3.css">--%>
+    <%--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">--%>
 
+    <%@ include file="../dependecies.jsp" %>
 
 </head>
+<body class="bgimg">
 
 <form:form method="post" modelAttribute="user">
     <div class="container" style="width: 50%; margin-left: 25%">
@@ -19,14 +21,14 @@
         <hr>
 
         <label for="email"><b>Email:</b></label>
-        <form:input path="email" placeholder="Enter email" name="email" />
-        <form:errors path="email" cssClass="error-message" element="div" />
+        <form:input path="email" placeholder="Enter email" name="email"/>
+        <form:errors path="email" cssClass="error-message" element="div"/>
 
         <label for="password"><b>Password:</b></label>
-        <form:input type="password" path="password" placeholder="Enter password" name="password" />
-        <form:errors path="password" cssClass="error-message" element="div" />
+        <form:input type="password" path="password" placeholder="Enter password" name="password"/>
+        <form:errors path="password" cssClass="error-message" element="div"/>
 
-        <c:if test ="${not empty param.error}">
+        <c:if test="${not empty param.error}">
             <h3 style="color: red; text-align: center"><span>Incorrect login or password</span></h3>
         </c:if>
 
@@ -36,8 +38,6 @@
         </div>
     </div>
 </form:form>
-
-
 
 
 </body>

@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/", produces = "text/html; charset=UTF-8")
 public class HomeController {
 
+    @RequestMapping("/")
+    public String sendToHomepage() {
+        return "/index";
+    }
+
     @RequestMapping("/dashboard")
     public String loginSuccess() {
         return "dashboard";
