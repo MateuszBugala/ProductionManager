@@ -4,13 +4,13 @@
 <html>
 <head>
     <title>Users - add</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
-
+    <%--<meta name="viewport" content="width=device-width, initial-scale=1">--%>
+    <%--<link rel="stylesheet" href="/css/w3.css">--%>
+    <%--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">--%>
+    <%@ include file="../dependecies.jsp" %>
 </head>
 
+<body class="bgimg">
 
 <c:if test ="${not empty param.duplicatedemail}">
     <h4 style="color: red"><span>There is already user with such email - please user other address</span></h4>

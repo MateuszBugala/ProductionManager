@@ -268,16 +268,16 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
+/*button {*/
+    /*background-color: #4CAF50;*/
+    /*color: white;*/
+    /*padding: 14px 20px;*/
+    /*margin: 8px 0;*/
+    /*border: none;*/
+    /*cursor: pointer;*/
+    /*width: 100%;*/
+    /*opacity: 0.9;*/
+/*}*/
 
 button:hover {
     opacity:1;
@@ -287,6 +287,22 @@ button:hover {
 .cancelbtn {
     padding: 14px 20px;
     background-color: #f44336;
+    color: white;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+.signupbtn {
+background-color: #4CAF50;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+opacity: 0.9;
 }
 
 /* Float cancel and signup buttons and add an equal width */

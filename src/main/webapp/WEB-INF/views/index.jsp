@@ -22,16 +22,16 @@
 <div class="w3-display-container w3-animate-opacity">
     <img src="../../css/background.jpg" alt="boat" style="width:100%;">
 
-    <div class="w3-display-topmiddle w3-jumbo">
+    <div class="w3-display-topmiddle w3-jumbo w3-text-white">
         <p>Production Manager App</p>
     </div>
 
     <div class="w3-container w3-display-middle w3-margin-bottom">
         <p>
-            <button onclick="location.href='/login/'" class="w3-button w3-xxlarge w3-theme w3-hover-teal">Log in</button>
+            <button onclick="location.href='/login/'" class="w3-button w3-xxxlarge w3-theme w3-hover-teal">Log in</button>
         </p>
         <p>
-            <button onclick="location.href='/users/add'" class="w3-button w3-xxlarge w3-theme w3-hover-teal">Create an user
+            <button onclick="location.href='/users/add'" class="w3-button w3-xxxlarge w3-theme w3-hover-teal">Create an user
             </button>
         </p>
 
@@ -49,7 +49,7 @@
 
     <div class="w3-quarter">
         <div class="w3-card w3-white">
-            <img src="#" alt="1 Step" style="width:100%">
+            <img src="#" alt=" " style="width:100%">
             <div class="w3-container">
                 <h3>1. Create products or use existing ones</h3>
                 <h4>Add all details like:</h4>
@@ -63,7 +63,7 @@
 
     <div class="w3-quarter">
         <div class="w3-card w3-white">
-            <img src="#" alt="2 Step" style="width:100%">
+            <img src="#" alt=" " style="width:100%">
             <div class="w3-container">
                 <h3>2. Create a quotation and add products</h3>
                 <h4>You need to fill in:</h4>
@@ -77,7 +77,7 @@
 
     <div class="w3-quarter">
         <div class="w3-card w3-white">
-            <img src="#" alt="3 Step" style="width:100%">
+            <img src="#" alt=" " style="width:100%">
             <div class="w3-container">
                 <h3>3. Send quotation to Production department</h3>
                 <h4>You will recieve an email when the quotation is ready</h4>
