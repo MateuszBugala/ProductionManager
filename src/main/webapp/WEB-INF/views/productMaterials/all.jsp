@@ -3,85 +3,109 @@
 <html>
 <head>
     <title>Product material - list</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../dependecies.jsp" %>
 </head>
 <body>
-
-<%--ważne różnica w widoku dla userGroup--%>
-<%--<c:choose>--%>
-    <%--<c:when test="${userGroup == 2}">--%>
-    <%--</c:when>--%>
-
-    <%--<c:otherwise>--%>
-    <%--</c:otherwise>--%>
-<%--</c:choose>--%>
+<%@include file="../loggedHeader.jsp" %>
 
 <c:choose>
     <c:when test="${userGroup == 2}">
-        <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+        <div class="w3-display-container w3-theme-l5" style="height:100%">
 
-        <h3>Product material list:</h3>
+            <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+                <h2>Product material list:</h2>
+            </div>
 
-        <table border="1" style="text-align: center">
+            <div class="w3-container w3-margin">
+            </div>
 
-            <thead>
-            <th>LP</th>
-            <th>Name</th>
-            </thead>
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4" style="width:30%">
 
-            <tbody>
-            <c:forEach items="${productMaterials}" var="productMaterial" varStatus="stat">
-                <tr>
-                    <td>${stat.index+1}</td>
-                    <td>${productMaterial.name}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>LP</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
 
-        </table>
+                    <tbody>
+                    <c:forEach items="${productMaterials}" var="productMaterial" varStatus="stat">
+                        <tr>
+                            <td>${stat.index+1}</td>
+                            <td>${productMaterial.name}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
 
+                </table>
+            </div>
+        </div>
     </c:when>
 
     <c:otherwise>
-        <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+        <div class="w3-display-container w3-theme-l5" style="height:100%">
 
-        <h3>Product material list:</h3>
+            <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+                <h2>Product material list:</h2>
+            </div>
 
-        <table border="1" style="text-align: center">
+            <div class="w3-container w3-margin">
 
-            <thead>
-            <th>LP</th>
-            <th>Name</th>
-            <th colspan="2">Actions</th>
-            </thead>
+                <c:if test="${not empty param.error}">
+                    <div class="w3-panel w3-pale-red w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Item cannot be deleted - it has some records in database</h4>
+                    </div>
+                </c:if>
 
-            <tbody>
-            <c:forEach items="${productMaterials}" var="productMaterial" varStatus="stat">
-                <tr>
-                    <td>${stat.index+1}</td>
-                    <td>${productMaterial.name}</td>
-                    <td style="width: 50px"><a href="/productMaterials/edit/${productMaterial.id}">Edit</a></td>
-                    <td style="width: 50px"><a href="/productMaterials/delete/${productMaterial.id}"
-                                               onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                <c:if test="${not empty param.deleted}">
+                    <div class="w3-panel w3-pale-green w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Item has been deleted</h4>
+                    </div>
+                </c:if>
 
-        </table>
+                <a href="http://localhost:8080/productMaterials/add" class="w3-btn w3-medium w3-block w3-theme w3-large"
+                   style="width:30%">Add a new item</a>
+            </div>
 
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4" style="width:30%">
 
-        <c:if test="${not empty param.error}">
-            <h4 style="color: red"><span>Product material cannot be deleted - it has some records in database</span>
-            </h4>
-        </c:if>
-        <c:if test="${not empty param.deleted}">
-            <h4 style="color: red"><span>Product material has been deleted</span></h4>
-        </c:if>
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>LP</th>
+                        <th>Name</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                    </thead>
 
+                    <tbody>
+                    <c:forEach items="${productMaterials}" var="productMaterial" varStatus="stat">
+                        <tr>
+                            <td>${stat.index+1}</td>
+                            <td>${productMaterial.name}</td>
+                            <td style="width: 50px"><a href="/productMaterials/edit/${productMaterial.id}">Edit</a></td>
+                            <td style="width: 50px"><a href="/productMaterials/delete/${productMaterial.id}"
+                                                       onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
 
-        <h4><a href="http://localhost:8080/productMaterials/add">Add a new Product material</a></h4>
+                </table>
+            </div>
+        </div>
     </c:otherwise>
+
 </c:choose>
+
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../footer.jsp" %>
+</div>
+
 </body>
 </html>

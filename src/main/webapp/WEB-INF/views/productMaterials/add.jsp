@@ -4,45 +4,41 @@
 <html>
 <head>
     <title>Product material - add</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../dependecies.jsp" %>
 </head>
-
 <body>
 
-<%--poniższe rozróżnienie nie jest potrzebne bo jest blokada na kontrolerze--%>
-<c:choose>
+<%@include file="../loggedHeader.jsp" %>
 
-    <c:when test="${userGroup == 2}">
-        You don't have access to this site!
-        <script>
-            var timer = setTimeout(function() {
-                history.back()
-            }, 2000);
-        </script>
-    </c:when>
+<div class="w3-display-container w3-theme-l5" style="height:100%">
 
-    <c:otherwise>
-        <button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+    <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+        <h2>Add a product material:</h2>
+    </div>
 
-        <h1>Add a material:</h1>
+    <div class="w3-container w3-margin">
+    </div>
 
+    <div class="w3-container w3-padding-16 w3-margin w3-col w3-card" style="width:30%">
         <form:form method="post" modelAttribute="productMaterial">
 
-            <table>
-                <tr>
-                    <td>Product material name:</td>
-                    <td><form:input path="name"/><br></td>
-                    <td><form:errors path="name" cssClass="error-message" element="div"/></td>
-                </tr>
+            <div class="w3-container w3-padding-16">
+                <label>Material name:</label>
+                <form:input path="name" class="w3-input w3-theme-l5"/>
+                <form:errors path="name" cssClass="w3-text-red" element="div"/>
+            </div>
 
-            </table>
-
-            <input type="submit" value="Send" style="margin-top: 30px">
+            <input type="submit" value="Send" class="w3-btn w3-block w3-theme w3-large w3-margin"
+                   style="width:80px">
 
         </form:form>
-    </c:otherwise>
+    </div>
+</div>
 
-</c:choose>
+
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../footer.jsp" %>
+</div>
+
 </body>
-
 </html>
