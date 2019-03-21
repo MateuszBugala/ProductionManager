@@ -248,7 +248,7 @@ body {height: 100%}
 * {box-sizing: border-box}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+.inpt {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;

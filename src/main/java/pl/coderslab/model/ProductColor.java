@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class ProductColor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
 //    cascade, aby prawidłowe wyświetlanie kolorów na liście produktów i dodawania prod

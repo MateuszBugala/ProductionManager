@@ -80,7 +80,7 @@
             <img src="#" alt=" " style="width:100%">
             <div class="w3-container">
                 <h3>3. Send quotation to Production department</h3>
-                <h4>You will recieve an email when the quotation is ready</h4>
+                <p>- you will recieve an email when the quotation is ready</p>
                 <p>- you can negotiate with Production</p>
                 <p>- once you approve the prices and conditions your quotation is stored in database for further reference</p>
                 <p></p>

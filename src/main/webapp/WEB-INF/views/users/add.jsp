@@ -25,19 +25,19 @@
 
 
     <label for="firstName"><b>First name:</b></label>
-    <form:input path="firstName" placeholder="Enter first name" name="firstName" />
+    <form:input path="firstName" placeholder="Enter first name" name="firstName" cssClass="inpt"/>
     <form:errors path="firstName" cssClass="error-message" element="div" />
 
     <label for="lastName"><b>Last name:</b></label>
-    <form:input path="lastName" placeholder="Enter last name" name="lastName" />
+    <form:input path="lastName" placeholder="Enter last name" name="lastName" cssClass="inpt"/>
     <form:errors path="lastName" cssClass="error-message" element="div" />
 
     <label for="email"><b>Email:</b></label>
-    <form:input path="email" placeholder="Enter email" name="email" />
+    <form:input path="email" placeholder="Enter email" name="email" cssClass="inpt"/>
     <form:errors path="email" cssClass="error-message" element="div" />
 
     <label for="password"><b>Password:</b></label>
-    <form:input type="password" path="password" placeholder="Enter password" name="password" />
+    <form:input type="password" path="password" placeholder="Enter password" name="password" cssClass="inpt" />
     <form:errors path="password" cssClass="error-message" element="div" />
 
     <label for="userGroup"><b>User group:</b></label>

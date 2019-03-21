@@ -21,11 +21,11 @@
         <hr>
 
         <label for="email"><b>Email:</b></label>
-        <form:input path="email" placeholder="Enter email" name="email"/>
+        <form:input path="email" placeholder="Enter email" name="email" cssClass="inpt"/>
         <form:errors path="email" cssClass="error-message" element="div"/>
 
         <label for="password"><b>Password:</b></label>
-        <form:input type="password" path="password" placeholder="Enter password" name="password"/>
+        <form:input type="password" path="password" placeholder="Enter password" name="password" cssClass="inpt"/>
         <form:errors path="password" cssClass="error-message" element="div"/>
 
         <c:if test="${not empty param.error}">

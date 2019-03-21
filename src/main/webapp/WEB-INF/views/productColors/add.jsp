@@ -20,19 +20,20 @@
     </div>
 
     <%--main content--%>
-    <div class="w3-container w3-margin w3-padding-24 w3-col w3-card" style="width:30%">
+    <div class="w3-container w3-padding-16 w3-margin w3-col w3-card" style="width:30%">
         <form:form method="post" modelAttribute="productColor">
 
             <%--dla inputa:
-            w3-section=16px top and bottom margin;
             w3-theme-l5=the same color as background
-            w3-border-bottom=only bottom border
             ewentualnie : "w3-border-0"--%>
-            <label>Color name:</label>
-            <form:input path="name" class="w3-input w3-section w3-border-bottom"/>
-            <form:errors path="name" cssClass="error-message w3-section" element="div"/>
+            <div class="w3-container w3-padding-16">
+                <label>Color name:</label>
+                <form:input path="name" class="w3-input w3-theme-l5"/>
+                <form:errors path="name" cssClass="w3-text-red" element="div"/>
+            </div>
 
-            <input type="submit" value="Send" class="w3-btn w3-medium w3-block w3-theme w3-large" style="width:80px">
+            <input type="submit" value="Send" class="w3-btn w3-block w3-theme w3-large w3-margin"
+                   style="width:80px">
 
         </form:form>
     </div>
