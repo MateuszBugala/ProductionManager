@@ -53,16 +53,21 @@
             <div class="w3-container w3-margin">
 
                 <c:if test="${not empty param.error}">
-                    <h4 style="color: red">
-                        <span>Item cannot be deleted - it has some records in database</span>
-                    </h4>
+                    <div class="w3-panel w3-pale-red w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Item cannot be deleted - it has some records in database</h4>
+                    </div>
                 </c:if>
+
                 <c:if test="${not empty param.deleted}">
-                    <h4 style="color: red"><span>Item has been deleted</span></h4>
+                    <div class="w3-panel w3-pale-green w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Item has been deleted</h4>
+                    </div>
                 </c:if>
 
-
-                <a href="http://localhost:8080/productColors/add" class="w3-btn w3-medium w3-block w3-theme w3-large" style="width:30%">Add a new Product color</a>
+                <a href="http://localhost:8080/productColors/add" class="w3-btn w3-medium w3-block w3-theme w3-large"
+                   style="width:30%">Add a new Product color</a>
             </div>
 
             <div class="w3-container w3-margin <%--w3-responsive--%>">
