@@ -20,7 +20,7 @@
 
 <!-- Image -->
 <div class="w3-display-container w3-animate-opacity">
-    <img src="../../css/background.jpg" alt="boat" style="width:100%;">
+    <img src="../../css/background.jpg" alt="bgr" style="width:100%;">
 
     <div class="w3-display-topmiddle w3-jumbo w3-text-white">
         <p>Production Manager App</p>
@@ -31,7 +31,7 @@
             <button onclick="location.href='/login/'" class="w3-button w3-xxxlarge w3-theme w3-hover-teal">Log in</button>
         </p>
         <p>
-            <button onclick="location.href='/users/add'" class="w3-button w3-xxxlarge w3-theme w3-hover-teal">Create an user
+            <button onclick="location.href='/users/add'" class="w3-button w3-xxxlarge w3-theme w3-hover-teal">Create an account
             </button>
         </p>
 
@@ -80,7 +80,7 @@
             <img src="#" alt=" " style="width:100%">
             <div class="w3-container">
                 <h3>3. Send quotation to Production department</h3>
-                <p>- you will recieve an email when the quotation is ready</p>
+                <p>- you will <strong>recieve an email when the quotation is ready</strong></p>
                 <p>- you can negotiate with Production</p>
                 <p>- once you approve the prices and conditions your quotation is stored in database for further reference</p>
                 <p></p>
