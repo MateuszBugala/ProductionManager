@@ -9,7 +9,7 @@
 
 <body>
 
-<%--------unique layout!--------%>
+<%--------signin/login layout!--------%>
 <div class="w3-display-container w3-theme-l5 bgimg" style="height:100%">
 
     <div class="w3-container w3-center w3-theme-d1">

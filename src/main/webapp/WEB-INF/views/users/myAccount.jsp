@@ -2,38 +2,58 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>User</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>My account</title>
+    <%@ include file="../dependecies.jsp" %>
 </head>
+
 <body>
+<%@include file="../loggedHeader.jsp" %>
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<%--------my account layout!--------%>
+<div class="w3-display-container w3-theme-l5" style="height:100%">
 
-<h3>User:</h3>
+    <div class="w3-container w3-center w3-theme-l4" style="padding-top: 52px">
+        <h2>My account</h2>
+    </div>
 
-<table border="1" style="text-align: center">
+    <div class="w3-container w3-margin">
+    </div>
 
-    <thead>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Group</th>
-    <th colspan="2">Actions</th>
-    </thead>
+    <div class="w3-container w3-padding-16 w3-margin w3-col w3-card-4 w3-display-middle w3-theme-l5" style="width:30%">
 
-    <tbody>
-        <tr>
-            <td>${currentUser.firstName}</td>
-            <td>${currentUser.lastName}</td>
-            <td>${currentUser.email}</td>
-            <td>${currentUser.userGroup.name}</td>
-            <td style="width: 50px"><a href="/users/edit/${currentUser.id}" >Edit</a></td>
-        </tr>
-    </tbody>
+            <div class="w3-container w3-padding-16">
+                <div>First name:</div>
+                <div class="w3-input w3-theme-l4 w3-border">${currentUser.firstName}</div>
+            </div>
 
-</table>
+            <div class="w3-container w3-padding-16">
+                <div>Last name:</div>
+                <div class="w3-input w3-theme-l4 w3-border">${currentUser.lastName}</div>
+            </div>
 
-<h4><a href="http://localhost:8080/login/logout">Log out</a></h4>
+            <div class="w3-container w3-padding-16">
+                <div>Email address:</div>
+                <div class="w3-input w3-theme-l4 w3-border">${currentUser.email}</div>
+            </div>
+
+            <div class="w3-container w3-padding-16">
+                <div>User group:</div>
+                <div class="w3-input w3-theme-l4 w3-border">${currentUser.userGroup.name}</div>
+            </div>
+
+            <div class="w3-center w3-section">
+                <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="history.back()">Back</button>
+                <button type="button" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%" onclick="location.href='http://localhost:8080/users/edit/${currentUser.id}'">Edit</button>
+            </div>
+
+    </div>
+</div>
+<%----------------%>
+
+
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../footer.jsp" %>
+</div
 
 </body>
 </html>

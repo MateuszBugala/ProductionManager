@@ -4,41 +4,56 @@
 <html>
 <head>
     <title>Login</title>
-    <%--<meta name="viewport" content="width=device-width, initial-scale=1">--%>
-    <%--<link rel="stylesheet" href="/css/w3.css">--%>
-    <%--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">--%>
-
     <%@ include file="../dependecies.jsp" %>
-
 </head>
-<body class="bgimg">
 
-<form:form method="post" modelAttribute="user">
-    <div class="container" style="width: 50%; margin-left: 25%">
+<body>
 
-        <h1>Log in</h1>
-        <p>Please fill in your credentials</p>
-        <hr>
+<%--------signin/login layout!--------%>
+<div class="w3-display-container w3-theme-l5 bgimg" style="height:100%">
 
-        <label for="email"><b>Email:</b></label>
-        <form:input path="email" placeholder="Enter email" name="email" cssClass="inpt"/>
-        <form:errors path="email" cssClass="error-message" element="div"/>
-
-        <label for="password"><b>Password:</b></label>
-        <form:input type="password" path="password" placeholder="Enter password" name="password" cssClass="inpt"/>
-        <form:errors path="password" cssClass="error-message" element="div"/>
-
-        <c:if test="${not empty param.error}">
-            <h3 style="color: red; text-align: center"><span>Incorrect login or password</span></h3>
-        </c:if>
-
-        <div class="clearfix" style="margin-top: 80px">
-            <button type="button" class="cancelbtn" onclick="location.href='http://localhost:8080/'">Back</button>
-            <button type="submit" class="signupbtn">Log in</button>
-        </div>
+    <div class="w3-container w3-center w3-theme-d1">
+        <h2>Log in</h2>
     </div>
-</form:form>
 
+    <div class="w3-container w3-margin">
+        <c:if test="${not empty param.error}">
+            <div class="w3-panel w3-pale-red w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                <h4 class="w3-center">Incorrect login or password</h4>
+            </div>
+        </c:if>
+    </div>
+
+    <div class="w3-container w3-padding-16 w3-margin w3-col w3-card-4 w3-display-middle w3-theme-l5" style="width:30%">
+        <form:form method="post" modelAttribute="user">
+
+            <div class="w3-container w3-padding-16">
+                <label>Email address:</label>
+                <form:input path="email" class="w3-input w3-theme-l5"/>
+                <form:errors path="email" cssClass="w3-text-red" element="div"/>
+            </div>
+
+            <div class="w3-container w3-padding-16">
+                <label>Password:</label>
+                <form:input type="password" path="password" class="w3-input w3-theme-l5"/>
+                <form:errors path="password" cssClass="w3-text-red" element="div"/>
+            </div>
+
+            <div class="w3-center w3-section">
+                <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="location.href='http://localhost:8080/'">Back</button>
+                <input type="submit" value="Login" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%">
+            </div>
+
+        </form:form>
+    </div>
+</div>
+<%----------------%>
+
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../footer.jsp" %>
+</div>
 
 </body>
 </html>
