@@ -3,45 +3,49 @@
 <html>
 <head>
     <title>User group - list</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../dependecies.jsp" %>
 </head>
 <body>
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<%@include file="../loggedHeader.jsp" %>
 
-<h3>User group list:</h3>
+<div class="w3-display-container w3-theme-l5" style="height:100%">
 
-<table border="1" style="text-align: center">
+    <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+        <h2>User group list:</h2>
+    </div>
 
-    <thead>
-    <th>LP</th>
-    <th>Name</th>
-    <th colspan="2">Actions</th>
-    </thead>
+    <div class="w3-container w3-margin">
+    </div>
 
-    <tbody>
-    <c:forEach items="${userGroups}" var="userGroup" varStatus="stat">
-        <tr>
-            <td>${stat.index+1}</td>
-            <td>${userGroup.name}</td>
-            <td style="width: 50px"><a href="/userGroups/edit/${userGroup.id}" >Edit</a></td>
-            <td style="width: 50px"><a href="/userGroups/delete/${userGroup.id}" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
+    <div class="w3-container w3-margin">
+        <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4" style="width:30%">
 
-</table>
+            <thead>
+            <tr class="w3-light-grey">
+                <th>LP</th>
+                <th>Name</th>
+                <th colspan="1">Actions</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            <c:forEach items="${userGroups}" var="userGroup" varStatus="stat">
+                <tr>
+                    <td>${stat.index+1}</td>
+                    <td>${userGroup.name}</td>
+                    <td style="width: 50px"><a href="/userGroups/edit/${userGroup.id}" >Edit</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
 
-<c:if test ="${not empty param.error}">
-    <h4 style="color: red"><span>User group cannot be deleted - it has some records in database</span></h4>
-</c:if>
-<c:if test ="${not empty param.deleted}">
-    <h4 style="color: red"><span>User group has been deleted</span></h4>
-</c:if>
+        </table>
+    </div>
+</div>
 
-
-<h4><a href="http://localhost:8080/userGroups/add">Add a new user group</a></h4>
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../footer.jsp" %>
+</div>
 
 </body>
 </html>
