@@ -11,7 +11,7 @@
                 <button class="w3-button" title="Notifications">Products <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
                     <a href="http://localhost:8080/products/all" class="w3-bar-item w3-button">Show all</a>
-                    <a href="#" class="w3-bar-item w3-button">Add new</a>
+                    <a href="http://localhost:8080/products/add" class="w3-bar-item w3-button">Add new</a>
                     <a href="http://localhost:8080/productColors/all" class="w3-bar-item w3-button">Product colors</a>
                     <a href="http://localhost:8080/productMaterials/all" class="w3-bar-item w3-button">Product materials</a>
                     <a href="http://localhost:8080/productGroups/all" class="w3-bar-item w3-button">Product groups</a>

@@ -42,7 +42,7 @@
 
         <div class="w3-bar">
             <button type="button" class="w3-btn w3-pale-red w3-large" style="width: 15%"
-                    onclick="location.href='http://localhost:8080/'">Back
+                    onclick="history.back()">Back
             </button>
             <a href="http://localhost:8080/products/add" class="w3-btn w3-medium w3-theme w3-large"
                style="width:15%">Add a new product</a>
