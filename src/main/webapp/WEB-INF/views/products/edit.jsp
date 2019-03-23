@@ -3,93 +3,100 @@
 <html>
 <head>
     <title>Products - edit</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../dependecies.jsp" %>
 </head>
-<body>
+<body class="w3-theme-l5">
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<%@include file="../loggedHeader.jsp" %>
 
-<h1>Edit a product:</h1>
+<div class="w3-container w3-theme-l4" style="padding-top: 52px">
+    <h2>Edit a product :</h2>
+</div>
 
-<form:form method="post" modelAttribute="product" action="/products/edit">
-    <form:hidden path="id"/>
+<div class="w3-container w3-margin">
+</div>
 
-    <table>
-        <tr>
-            <td>Code:</td>
-            <td><form:input path="code"/><br></td>
-            <td><form:errors path="code" cssClass="error-message" element="div" /></td>
-        </tr>
+<div class="w3-container w3-padding-16 w3-section w3-col w3-card" style="width:30%; margin-left: 35%">
+    <form:form method="post" modelAttribute="product" action="/products/edit">
+        <form:hidden path="id"/>
 
-        <tr>
-            <td>Name:</td>
-            <td><form:input path="name"/><br></td>
-            <td><form:errors path="name" cssClass="error-message" element="div" /></td>
-        </tr>
+        <div class="w3-container w3-padding-16">
+            <label>Code:</label>
+            <form:input path="code" class="w3-input w3-theme-l5"/>
+            <form:errors path="code" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Description:</td>
-            <td><form:input path="description"/><br></td>
-            <td><form:errors path="description" cssClass="error-message" element="div" /></td>
-        </tr>
+        <div class="w3-container w3-padding-16">
+            <label>Name:</label>
+            <form:input path="name" class="w3-input w3-theme-l5"/>
+            <form:errors path="name" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Product group:</td>
-            <td><form:select path="productGroup" cssStyle="width: 230px">
+        <div class="w3-container w3-padding-16">
+            <label for="productGroup">Product group:</label>
+            <form:select path="productGroup" name="productGroup" class="w3-select w3-theme-l5">
                 <form:option value="0" label="Choose product group"/><br>
                 <form:options items="${productGroups}" itemLabel="name" itemValue="id"/><br>
-            </form:select><br></td>
-            <td><form:errors path="productGroup" cssClass="error-message" element="div"/></td>
-        </tr>
+            </form:select><br>
+            <form:errors path="productGroup" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Outer Height:</td>
-            <td><form:input path="outerHeight"/><br></td>
-            <td><form:errors path="outerHeight" cssClass="error-message" element="div" /></td>
-        </tr>
+        <div class="w3-container w3-padding-16">
+            <label>Description:</label>
+            <form:input path="description" class="w3-input w3-theme-l5"/>
+            <form:errors path="description" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Outer Width:</td>
-            <td><form:input path="outerWidth"/><br></td>
-            <td><form:errors path="outerWidth" cssClass="error-message" element="div" /></td>
-        </tr>
 
-        <tr>
-            <td>Outer Length:</td>
-            <td><form:input path="outerLength"/><br></td>
-            <td><form:errors path="outerLength" cssClass="error-message" element="div" /></td>
-        </tr>
+        <div class="w3-container w3-padding-16">
+            <label>Outer height:</label>
+            <form:input path="outerHeight" class="w3-input w3-theme-l5"/>
+            <form:errors path="outerHeight" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Product colors:</td>
-            <td><form:select path="productColors" cssStyle="width: 230px">
+        <div class="w3-container w3-padding-16">
+            <label>Outer width:</label>
+            <form:input path="outerWidth" class="w3-input w3-theme-l5"/>
+            <form:errors path="outerWidth" cssClass="w3-text-red" element="div"/>
+        </div>
+
+        <div class="w3-container w3-padding-16">
+            <label>Outer length:</label>
+            <form:input path="outerLength" class="w3-input w3-theme-l5"/>
+            <form:errors path="outerLength" cssClass="w3-text-red" element="div"/>
+        </div>
+
+        <div class="w3-container w3-padding-16">
+            <label for="productColors">Product colors:</label>
+            <form:select path="productColors" name="productColors" class="w3-select w3-theme-l5">
                 <form:option value="0" label="Choose product colors"/><br>
                 <form:options items="${productColors}" itemLabel="name" itemValue="id"/><br>
-            </form:select><br></td>
-            <td><form:errors path="productColors" cssClass="error-message" element="div"/></td>
-        </tr>
+            </form:select><br>
+            <form:errors path="productColors" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Product materials:</td>
-            <td><form:select path="productMaterials" cssStyle="width: 230px">
+        <div class="w3-container w3-padding-16">
+            <label for="productMaterials">Product materials:</label>
+            <form:select path="productMaterials" name="productMaterials" class="w3-select w3-theme-l5">
                 <form:option value="0" label="Choose product materials"/><br>
                 <form:options items="${productMaterials}" itemLabel="name" itemValue="id"/><br>
-            </form:select><br></td>
-            <td><form:errors path="productMaterials" cssClass="error-message" element="div"/></td>
-        </tr>
+            </form:select><br>
+            <form:errors path="productMaterials" cssClass="w3-text-red" element="div"/>
+        </div>
 
-        <tr>
-            <td>Notes:</td>
-            <td><form:input path="notes"/><br></td>
-            <td><form:errors path="notes" cssClass="error-message" element="div" /></td>
-        </tr>
+        <div class="w3-container w3-padding-16">
+            <label>Notes:</label>
+            <form:input path="notes" class="w3-input w3-theme-l5"/>
+            <form:errors path="notes" cssClass="w3-text-red" element="div"/>
+        </div>
 
+        <div class="w3-center w3-section">
+            <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="history.back()">Back</button>
+            <input type="submit" value="Update" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%">
+        </div>
 
-    </table>
-
-    <input type="submit" value="Send" style="margin-top: 30px">
-
-</form:form>
+    </form:form>
+</div>
 
 </body>
 </html>

@@ -114,7 +114,8 @@ public class ProductController {
             return "products/edit";
         }
         productService.save(product);
-        return "redirect:/products/all";
+        Long prodId = product.getId();
+        return "redirect:/products/details/"+prodId;
     }
 
 
