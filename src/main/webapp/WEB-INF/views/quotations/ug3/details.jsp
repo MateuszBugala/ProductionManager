@@ -48,6 +48,14 @@
             </div>
         </c:if>
 
+        <c:if test="${not empty param.emptyPrice}">
+            <div class="w3-panel w3-pale-red w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                <h4 class="w3-center">Please fill in prices and actual DD for each line</h4>
+            </div>
+        </c:if>
+
         <div class="w3-bar">
 
             <a href="http://localhost:8080/quotations/all"

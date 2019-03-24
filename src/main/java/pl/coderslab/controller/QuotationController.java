@@ -152,14 +152,24 @@ public class QuotationController {
 
     @RequestMapping("/quoted/{id}")
     public String quoted(@PathVariable Long id) {
+        List<QuotationItem> quotationItems = quotationItemService.findAllByQuotationId(id);
+        for (QuotationItem item : quotationItems) {
+            if (item.getPrice() == null) {
+                return "redirect:/quotations/details/" + id + "?emptyPrice=true";
+            }
+        }
         quotationService.changeStatus(id, 3);
 
 //        email:
         User user = quotationService.findById(id).getCreatedBy();
         String userName = user.getFullName();
         String userEmail = user.getEmail();
-        EmailService.send(userEmail,userName, id);
-
+//      in case of incorrect email password:
+        try {
+            EmailService.send(userEmail,userName, id);
+        } catch (RuntimeException e) {
+            return "redirect:/quotations/all";
+        }
         return "quotations/sent";
     }
 
