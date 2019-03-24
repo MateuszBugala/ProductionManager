@@ -14,30 +14,60 @@
     </div>
 </div>
 
+<c:choose>
+    <c:when test="${currentUserGroup != 3}">
 
-<div class="w3-display-middle w3-container w3-large">
+        <div class="w3-display-middle w3-container w3-large">
 
-    <a href="http://localhost:8080/products/all" class="w3-button w3-theme w3-xxxlarge">Products</a>
-    <a href="http://localhost:8080/quotations/all" class="w3-button w3-theme w3-xxxlarge">Quotations</a>
-    <%--różnica w widoku dla userGroup----------------------------------%>
-    <c:choose>
-        <c:when test="${currentUserGroup == 3}">
-            <a href="http://localhost:8080/users/all" class="w3-button w3-theme w3-xxxlarge">Users</a>
-            <a href="http://localhost:8080/userGroups/all" class="w3-button w3-theme w3-xxxlarge">User groups</a>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>
+            <a href="http://localhost:8080/products/all" class="w3-button w3-theme w3-xxxlarge">Products</a>
+            <a href="http://localhost:8080/quotations/all" class="w3-button w3-theme w3-xxxlarge">Quotations</a>
 
-    <div class="w3-container w3-large">
-        <p><a href="http://localhost:8080/productColors/all" class="w3-button w3-theme w3-xxlarge">Product colors</a>
-        </p>
-        <p><a href="http://localhost:8080/productMaterials/all" class="w3-button w3-theme w3-xxlarge">Product
-            materials</a></p>
-        <p><a href="http://localhost:8080/productGroups/all" class="w3-button w3-theme w3-xxlarge">Product groups</a>
-        </p>
-    </div>
-</div>
+
+            <div class="w3-container w3-large">
+                <p><a href="http://localhost:8080/productColors/all" class="w3-button w3-theme w3-xxlarge">Product
+                    colors</a>
+                </p>
+                <p><a href="http://localhost:8080/productMaterials/all" class="w3-button w3-theme w3-xxlarge">Product
+                    materials</a></p>
+                <p><a href="http://localhost:8080/productGroups/all" class="w3-button w3-theme w3-xxlarge">Product
+                    groups</a>
+                </p>
+            </div>
+        </div>
+
+    </c:when>
+
+    <c:otherwise>
+        <div class="w3-display-middle w3-container w3-large">
+
+            <div class="w3-bar">
+
+                <a href="http://localhost:8080/products/all" class="w3-button w3-theme w3-xxlarge" style="width:250px">Products</a>
+                <a href="http://localhost:8080/quotations/all" class="w3-button w3-theme w3-xxlarge"
+                   style="width:250px">Quotations</a>
+                <a href="http://localhost:8080/users/all" class="w3-button w3-theme w3-xxlarge" style="width:250px">Users</a>
+
+            </div>
+
+            <div class="w3-container w3-large w3-margin">
+                <div class="w3-bar">
+
+                    <a href="http://localhost:8080/productColors/all" class="w3-button w3-theme w3-xxlarge">Product
+                        colors</a>
+                    <a href="http://localhost:8080/userGroups/all" class="w3-button w3-theme w3-xxlarge" style="margin-left: 22%">User groups</a>
+                </div>
+
+                <p><a href="http://localhost:8080/productMaterials/all" class="w3-button w3-theme w3-xxlarge">Product
+                    materials</a></p>
+                <p><a href="http://localhost:8080/productGroups/all" class="w3-button w3-theme w3-xxlarge">Product
+                    groups</a>
+                </p>
+            </div>
+        </div>
+
+    </c:otherwise>
+
+</c:choose>
 
 </body>
 </html>
