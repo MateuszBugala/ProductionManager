@@ -45,9 +45,14 @@ public class UserController {
 
 
     @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("user", new User());
-        return "users/add";
+    public String add(Model model, HttpSession session) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        if (currentUser != null) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("user", new User());
+            return "users/add";
+        }
     }
 
 

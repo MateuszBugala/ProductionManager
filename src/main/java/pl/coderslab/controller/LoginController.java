@@ -20,19 +20,12 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-//    widok loginSuccess jest, aby "zgubić" parametry doklejane kiedy był redirect:/dashboard
     @GetMapping("/")
     public String login(Model model, HttpSession session) {
-        User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser != null) {
-            return "login/loginSuccess";
-        } else {
-            model.addAttribute("user", new User());
-            return "login/login";
-        }
+        model.addAttribute("user", new User());
+        return "login/login";
     }
 
-    /*poniżej osobno należy "wyciągnąć" password, bo inaczej (przez user.getPassword()) jest zahashowane*/
     @PostMapping("/")
     public String authorize(@Valid User user, @RequestParam String password, BindingResult result, Model model, HttpSession session) {
         if (result.hasErrors()) {
@@ -55,7 +48,6 @@ public class LoginController {
     }
 
 
-    //    poniższe działa tylk po dodaniu session.invalidate() również w widoku
     @RequestMapping("/logout")
     public String logout(HttpSession session, Model model) {
         session.invalidate();
