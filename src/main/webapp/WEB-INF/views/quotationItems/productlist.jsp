@@ -3,46 +3,83 @@
 <html>
 <head>
     <title>Quotation - add items</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../dependecies.jsp" %>
 </head>
 <body>
+<%@include file="../loggedHeader.jsp" %>
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
-<button type="button" name="back" onclick="history.back()">Back</button>
+<div class="w3-display-container w3-theme-l5" style="height:100%">
 
-<h3>Products list:</h3>
+    <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+        <h2>Choose products to quote:</h2>
+    </div>
 
-<table border="1" style="text-align: center">
+    <div class="w3-container w3-margin">
 
-    <thead>
-    <th>LP</th>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Group</th>
-    <th>Notes</th>
-    <th colspan="2">Actions</th>
-    </thead>
+        <div class="w3-bar">
+            <button type="button" class="w3-btn w3-pale-red w3-large" style="width: 15%"
+                    onclick="history.back()">Back
+            </button>
 
-    <tbody>
-    <c:forEach items="${products}" var="product" varStatus="stat">
-        <tr>
-            <td>${stat.index+1}</td>
-            <td>${product.code}</td>
-            <td>${product.name}</td>
-            <td>${product.productGroup.name}</td>
-            <td>${product.notes}</td>
+        </div>
 
-            <td style="width: 50px"><a href="/quotationItems/add/${id}/${product.id}" >Add to quotation</a></td>
-            <%--do zmiany--%>
-            <td style="width: 50px"><a href="/products/det/${product.id}" >Details</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
+    </div>
 
-</table>
+    <div class="w3-container w3-margin">
+        <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4">
 
-<%--<h4><a href="http://localhost:8080/quotations/details/${id}">Back to quotation</a></h4>--%>
+            <thead>
+            <tr class="w3-light-grey">
+                <th>Code</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Group</th>
+                <th>OuterHeight</th>
+                <th>OuterWidth</th>
+                <th>OuterLength</th>
+                <th>Colors</th>
+                <%--<th>Materials</th>--%>
+                <th>Notes</th>
+                <th colspan="2" style="text-align: center">Actions</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            <c:forEach items="${products}" var="product" varStatus="stat">
+                <tr>
+                    <td>${product.code}</td>
+                    <td>${product.name}</td>
+                    <td>${product.description}</td>
+                    <td>${product.productGroup.name}</td>
+                    <td>${product.outerHeight}</td>
+                    <td>${product.outerWidth}</td>
+                    <td>${product.outerLength}</td>
+                    <td style="max-width: 400px">
+                        <c:forEach items="${product.productColors}" var="productColors" varStatus="stat">
+                            ${stat.index+1}. ${productColors.name}<br>
+                        </c:forEach>
+                    </td>
+                    <%--<td style="max-width: 400px">--%>
+                        <%--<c:forEach items="${product.productMaterials}" var="productMaterials" varStatus="stat">--%>
+                            <%--${stat.index+1}. ${productMaterials.name}<br>--%>
+                        <%--</c:forEach>--%>
+                    <%--</td>--%>
+                    <td>${product.notes}</td>
+                    <td style="width: 90px"><a  class="w3-btn w3-theme w3-large" href="/quotationItems/add/${id}/${product.id}">Add to quotation</a></td>
+                    <td style="width: 50px"><a href="/products/details/${product.id}">Details</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+<%-------------------------%>
+
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../footer.jsp" %>
+</div>
 
 </body>
 </html>
