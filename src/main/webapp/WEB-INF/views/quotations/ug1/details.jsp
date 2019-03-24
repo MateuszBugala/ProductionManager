@@ -3,349 +3,465 @@
 <html>
 <head>
     <title>Quotations - details</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../../dependecies.jsp" %>
 </head>
 <body>
-
-<button onclick="location.href='../../../..'" type="button">HOME</button>
-<button type="button" name="back" onclick="history.back()">Back</button>
-
-<h3>Quotations details:</h3>
+<%@include file="../../loggedHeader.jsp" %>
 
 <c:choose>
     <%--status 1---------------------------------------------------------------------------------%>
     <c:when test="${quotation.status == 1}">
-        <table border="1" style="text-align: center">
 
-            <thead>
-            <th>Number</th>
-            <th>Customer Name</th>
-            <th>Delivery Term</th>
-            <th>Notes</th>
-            <th>Remarks</th>
-            <th>Created By</th>
-            <th>Created on</th>
-            <th>Status</th>
-            <th colspan="2">Actions</th>
-            </thead>
+        <div class="w3-display-container w3-theme-l5" style="height:100%">
+
+            <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+                <h2>Quotations details:</h2>
+            </div>
+
+            <div class="w3-container w3-margin">
+
+                <c:if test="${not empty param.error}">
+                    <div class="w3-panel w3-pale-red w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Item cannot be deleted - it has some records in database</h4>
+                    </div>
+                </c:if>
+
+                <c:if test="${not empty param.deleted}">
+                    <div class="w3-panel w3-pale-green w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Item has been deleted</h4>
+                    </div>
+                </c:if>
+
+                <c:if test="${not empty param.noItems}">
+                    <div class="w3-panel w3-pale-red w3-border w3-display-container">
+                        <span onclick="this.parentElement.style.display='none'"
+                              class="w3-button w3-large w3-display-topright">×</span>
+                        <h4 class="w3-center">Quotation with no items cannot be sent</h4>
+                    </div>
+                </c:if>
+
+                <div class="w3-bar">
+
+                    <a href="http://localhost:8080/quotations/all"
+                       class="w3-btn w3-pale-red w3-large"
+                       style="width:15%">Back</a>
+                    <a href="http://localhost:8080/quotations/sent/${quotation.id}"
+                       class="w3-btn w3-medium w3-theme w3-large"
+                       style="width:15%">Send to production</a>
+                </div>
+
+            </div>
+
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4">
+
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Number</th>
+                        <th>Customer Name</th>
+                        <th>Delivery Term</th>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                        <th>Created By</th>
+                        <th>Created on</th>
+                        <th>Status</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>${quotation.id}</td>
+                        <td>${quotation.customerName}</td>
+                        <td>${quotation.deliveryTerm}</td>
+                        <td>${quotation.notes}</td>
+                        <td>${quotation.remarks}</td>
+                        <td>${quotation.createdBy.fullName}</td>
+                        <td>${quotation.creationTime}</td>
+                        <td>${quotation.status}</td>
 
 
-            <tbody>
-            <tr>
-                <td>${quotation.id}</td>
-                <td>${quotation.customerName}</td>
-                <td>${quotation.deliveryTerm}</td>
-                <td>${quotation.notes}</td>
-                <td>${quotation.remarks}</td>
-                <td>${quotation.createdBy.fullName}</td>
-                <td>${quotation.creationTime}</td>
-                <td>${quotation.status}</td>
+                        <td style="width: 50px"><a href="/quotations/edit/${quotation.id}">Edit</a></td>
+                        <td style="width: 50px"><a href="/quotations/delete/${quotation.id}"
+                                                   onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
 
+                </table>
+            </div>
 
-                <td style="width: 50px"><a href="/quotations/edit/${quotation.id}">Edit</a></td>
-                <td style="width: 50px"><a href="/quotations/delete/${quotation.id}"
-                                           onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                </td>
-            </tr>
-            </tbody>
+                <%--lista QuotationItems--%>
 
-        </table>
+            <div class="w3-container w3-margin w3-theme-l4">
+                <h3 class="w3-center">Items in this quotation:</h3>
 
-        <%--lista QuotationItems--%>
+            </div>
+            <div class="w3-container w3-margin">
+                <a href="http://localhost:8080/quotations/addItem/${quotation.id}"
+                   class="w3-btn w3-medium w3-theme w3-large"
+                   style="width:30%; margin-left: 35%">Add products to this quotation</a>
+            </div>
 
-        <br><br>
-        <h3>Items in this quotation:</h3>
-        <h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
-        <table border="1" style="text-align: center">
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4"
+                       style="width:80%; margin-left: 10%">
 
-            <thead>
-            <th>LP</th>
-            <th>Product name</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Required DD</th>
-            <th>Actual DD</th>
-            <th>Notes</th>
-            <th colspan="2">Actions</th>
-            </thead>
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>LP</th>
+                        <th>Product name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Required DD</th>
+                        <th>Actual DD</th>
+                        <th>Notes</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                    </thead>
 
-            <tbody>
-            <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
-                <tr>
-                    <td>${stat.index+1}</td>
-                    <td>${quotationItem.product.name}</td>
-                    <td>${quotationItem.quantity}</td>
-                    <td>${quotationItem.price}</td>
-                    <td>${quotationItem.requiredDeliveryDate}</td>
-                    <td>${quotationItem.actualDeliveryDate}</td>
-                    <td>${quotationItem.notes}</td>
+                    <tbody>
+                    <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
+                        <tr>
+                            <td>${stat.index+1}</td>
+                            <td>${quotationItem.product.name}</td>
+                            <td>${quotationItem.quantity}</td>
+                            <td>${quotationItem.price}</td>
+                            <td>${quotationItem.requiredDeliveryDate}</td>
+                            <td>${quotationItem.actualDeliveryDate}</td>
+                            <td>${quotationItem.notes}</td>
 
-                    <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a></td>
-                    <td style="width: 50px"><a href="/quotationItems/delete/${quotation.id}/${quotationItem.id}">Delete
-                        line</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                            <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a>
+                            </td>
+                            <td style="width: 50px"><a
+                                    href="/quotationItems/delete/${quotation.id}/${quotationItem.id}">Delete
+                                line</a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
 
-        </table>
+                </table>
+            </div>
+        </div>
 
-        <c:if test="${not empty param.error}">
-            <h4 style="color: red"><span>Item cannot be deleted - it has some records in database</span></h4>
-        </c:if>
-        <c:if test="${not empty param.deleted}">
-            <h4 style="color: red"><span>Item has been deleted</span></h4>
-        </c:if>
-        <c:if test="${not empty param.noItems}">
-            <h4 style="color: red"><span>Quotation with no items cannot be sent</span></h4>
-        </c:if>
-
-        <button onclick="location.href='http://localhost:8080/quotations/sent/${quotation.id}'" type="button">Send to
-            Production Department
-        </button>
     </c:when>
 
     <%--status 2---------------------------------------------------------------------------------%>
     <c:when test="${quotation.status == 2}">
-        <table border="1" style="text-align: center">
 
-            <thead>
-            <th>Number</th>
-            <th>Customer Name</th>
-            <th>Delivery Term</th>
-            <th>Notes</th>
-            <th>Remarks</th>
-            <th>Created By</th>
-            <th>Created on</th>
-            <th>Status</th>
-            <th colspan="1">Actions</th>
-            </thead>
+        <div class="w3-display-container w3-theme-l5" style="height:100%">
 
+            <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+                <h2>Quotations details:</h2>
+            </div>
 
-            <tbody>
-            <tr>
-                <td>${quotation.id}</td>
-                <td>${quotation.customerName}</td>
-                <td>${quotation.deliveryTerm}</td>
-                <td>${quotation.notes}</td>
-                <td>${quotation.remarks}</td>
-                <td>${quotation.createdBy.fullName}</td>
-                <td>${quotation.creationTime}</td>
-                <td>${quotation.status}</td>
+            <div class="w3-container w3-margin">
 
+                <div class="w3-bar">
 
-                <td style="width: 50px"><a href="/quotations/edit/${quotation.id}">Edit</a></td>
-            </tr>
-            </tbody>
+                    <a href="http://localhost:8080/quotations/all"
+                       class="w3-btn w3-pale-red w3-large"
+                       style="width:15%">Back</a>
+                </div>
 
-        </table>
+            </div>
 
-        <%--lista QuotationItems--%>
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4">
 
-        <br><br>
-        <h3>Items in this quotation:</h3>
-        <h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
-        <table border="1" style="text-align: center">
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Number</th>
+                        <th>Customer Name</th>
+                        <th>Delivery Term</th>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                        <th>Created By</th>
+                        <th>Created on</th>
+                        <th>Status</th>
+                        <th colspan="1">Actions</th>
+                    </tr>
+                    </thead>
 
-            <thead>
-            <th>LP</th>
-            <th>Product name</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Required DD</th>
-            <th>Actual DD</th>
-            <th>Notes</th>
-            <th colspan="2">Actions</th>
-            </thead>
+                    <tbody>
+                    <tr>
+                        <td>${quotation.id}</td>
+                        <td>${quotation.customerName}</td>
+                        <td>${quotation.deliveryTerm}</td>
+                        <td>${quotation.notes}</td>
+                        <td>${quotation.remarks}</td>
+                        <td>${quotation.createdBy.fullName}</td>
+                        <td>${quotation.creationTime}</td>
+                        <td>${quotation.status}</td>
 
-            <tbody>
-            <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
-                <tr>
-                    <td>${stat.index+1}</td>
-                    <td>${quotationItem.product.name}</td>
-                    <td>${quotationItem.quantity}</td>
-                    <td>${quotationItem.price}</td>
-                    <td>${quotationItem.requiredDeliveryDate}</td>
-                    <td>${quotationItem.actualDeliveryDate}</td>
-                    <td>${quotationItem.notes}</td>
+                        <td style="width: 50px"><a href="/quotations/edit/${quotation.id}">Edit</a></td>
+                    </tr>
+                    </tbody>
 
-                    <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a></td>
-                    <td style="width: 50px"><a href="/quotationItems/delete/${quotation.id}/${quotationItem.id}">Delete
-                        line</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                </table>
+            </div>
 
-        </table>
+                <%--lista QuotationItems--%>
 
-        <c:if test="${not empty param.error}">
-            <h4 style="color: red"><span>Item cannot be deleted - it has some records in database</span></h4>
-        </c:if>
-        <c:if test="${not empty param.deleted}">
-            <h4 style="color: red"><span>Item has been deleted</span></h4>
-        </c:if>
+            <div class="w3-container w3-margin w3-theme-l4">
+                <h3 class="w3-center">Items in this quotation:</h3>
+            </div>
+
+            <div class="w3-container w3-margin">
+            </div>
+
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4"
+                       style="width:80%; margin-left: 10%">
+
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>LP</th>
+                        <th>Product name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Required DD</th>
+                        <th>Actual DD</th>
+                        <th>Notes</th>
+                        <th colspan="1">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
+                        <tr>
+                            <td>${stat.index+1}</td>
+                            <td>${quotationItem.product.name}</td>
+                            <td>${quotationItem.quantity}</td>
+                            <td>${quotationItem.price}</td>
+                            <td>${quotationItem.requiredDeliveryDate}</td>
+                            <td>${quotationItem.actualDeliveryDate}</td>
+                            <td>${quotationItem.notes}</td>
+
+                            <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
     </c:when>
 
     <%--status 3---------------------------------------------------------------------------------%>
     <c:when test="${quotation.status == 3}">
-        <table border="1" style="text-align: center">
 
-            <thead>
-            <th>Number</th>
-            <th>Customer Name</th>
-            <th>Delivery Term</th>
-            <th>Notes</th>
-            <th>Remarks</th>
-            <th>Created By</th>
-            <th>Created on</th>
-            <th>Status</th>
-            </thead>
+        <div class="w3-display-container w3-theme-l5" style="height:100%">
 
+            <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+                <h2>Quotations details:</h2>
+            </div>
 
-            <tbody>
-            <tr>
-                <td>${quotation.id}</td>
-                <td>${quotation.customerName}</td>
-                <td>${quotation.deliveryTerm}</td>
-                <td>${quotation.notes}</td>
-                <td>${quotation.remarks}</td>
-                <td>${quotation.createdBy.fullName}</td>
-                <td>${quotation.creationTime}</td>
-                <td>${quotation.status}</td>
-            </tr>
-            </tbody>
+            <div class="w3-container w3-margin">
 
-        </table>
+                <div class="w3-bar">
 
-        <%--lista QuotationItems--%>
+                    <a href="http://localhost:8080/quotations/all"
+                       class="w3-btn w3-pale-red w3-large"
+                       style="width:15%">Back</a>
 
-        <br><br>
-        <h3>Items in this quotation:</h3>
-        <h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
-        <table border="1" style="text-align: center">
+                    <a href="http://localhost:8080/quotations/approved/${quotation.id}"
+                       class="w3-btn w3-medium w3-theme w3-large"
+                       style="width:15%">Approve quotation</a>
+                </div>
+            </div>
 
-            <thead>
-            <th>LP</th>
-            <th>Product name</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Required DD</th>
-            <th>Actual DD</th>
-            <th>Notes</th>
-            <th colspan="2">Actions</th>
-            </thead>
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4">
 
-            <tbody>
-            <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
-                <tr>
-                    <td>${stat.index+1}</td>
-                    <td>${quotationItem.product.name}</td>
-                    <td>${quotationItem.quantity}</td>
-                    <td>${quotationItem.price}</td>
-                    <td>${quotationItem.requiredDeliveryDate}</td>
-                    <td>${quotationItem.actualDeliveryDate}</td>
-                    <td>${quotationItem.notes}</td>
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Number</th>
+                        <th>Customer Name</th>
+                        <th>Delivery Term</th>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                        <th>Created By</th>
+                        <th>Created on</th>
+                        <th>Status</th>
+                        <th colspan="1">Actions</th>
+                    </tr>
+                    </thead>
 
-                    <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a></td>
-                    <td style="width: 50px"><a href="/quotationItems/delete/${quotation.id}/${quotationItem.id}">Delete
-                        line</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                    <tbody>
+                    <tr>
+                        <td>${quotation.id}</td>
+                        <td>${quotation.customerName}</td>
+                        <td>${quotation.deliveryTerm}</td>
+                        <td>${quotation.notes}</td>
+                        <td>${quotation.remarks}</td>
+                        <td>${quotation.createdBy.fullName}</td>
+                        <td>${quotation.creationTime}</td>
+                        <td>${quotation.status}</td>
 
-        </table>
+                        <td style="width: 50px"><a href="/quotations/edit/${quotation.id}">Edit</a></td>
+                    </tr>
+                    </tbody>
 
-        <c:if test="${not empty param.error}">
-            <h4 style="color: red"><span>Item cannot be deleted - it has some records in database</span></h4>
-        </c:if>
-        <c:if test="${not empty param.deleted}">
-            <h4 style="color: red"><span>Item has been deleted</span></h4>
-        </c:if>
+                </table>
+            </div>
 
-        <button onclick="location.href='http://localhost:8080/quotations/approved/${quotation.id}'" type="button">
-            Approve quotation
-        </button>
+                <%--lista QuotationItems--%>
+
+            <div class="w3-container w3-margin w3-theme-l4">
+                <h3 class="w3-center">Items in this quotation:</h3>
+            </div>
+
+            <div class="w3-container w3-margin">
+            </div>
+
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4"
+                       style="width:80%; margin-left: 10%">
+
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>LP</th>
+                        <th>Product name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Required DD</th>
+                        <th>Actual DD</th>
+                        <th>Notes</th>
+                        <th colspan="1">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
+                        <tr>
+                            <td>${stat.index+1}</td>
+                            <td>${quotationItem.product.name}</td>
+                            <td>${quotationItem.quantity}</td>
+                            <td>${quotationItem.price}</td>
+                            <td>${quotationItem.requiredDeliveryDate}</td>
+                            <td>${quotationItem.actualDeliveryDate}</td>
+                            <td>${quotationItem.notes}</td>
+
+                            <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
 
     </c:when>
 
     <%--status 4---------------------------------------------------------------------------------%>
     <c:otherwise>
-        <table border="1" style="text-align: center">
 
-            <thead>
-            <th>Number</th>
-            <th>Customer Name</th>
-            <th>Delivery Term</th>
-            <th>Notes</th>
-            <th>Remarks</th>
-            <th>Created By</th>
-            <th>Created on</th>
-            <th>Status</th>
-            </thead>
+        <div class="w3-display-container w3-theme-l5" style="height:100%">
 
+            <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+                <h2>Quotations details:</h2>
+            </div>
 
-            <tbody>
-            <tr>
-                <td>${quotation.id}</td>
-                <td>${quotation.customerName}</td>
-                <td>${quotation.deliveryTerm}</td>
-                <td>${quotation.notes}</td>
-                <td>${quotation.remarks}</td>
-                <td>${quotation.createdBy.fullName}</td>
-                <td>${quotation.creationTime}</td>
-                <td>${quotation.status}</td>
-            </tr>
-            </tbody>
+            <div class="w3-container w3-margin">
 
-        </table>
+                <div class="w3-bar">
 
-        <%--lista QuotationItems--%>
+                    <a href="http://localhost:8080/quotations/all"
+                       class="w3-btn w3-pale-red w3-large"
+                       style="width:15%">Back</a>
+                </div>
+            </div>
 
-        <br><br>
-        <h3>Items in this quotation:</h3>
-        <h4><a href="/quotations/addItem/${quotation.id}">Add products to this quotation</a></h4>
-        <table border="1" style="text-align: center">
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4">
 
-            <thead>
-            <th>LP</th>
-            <th>Product name</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Required DD</th>
-            <th>Actual DD</th>
-            <th>Notes</th>
-            <th colspan="2">Actions</th>
-            </thead>
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>Number</th>
+                        <th>Customer Name</th>
+                        <th>Delivery Term</th>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                        <th>Created By</th>
+                        <th>Created on</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
 
-            <tbody>
-            <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
-                <tr>
-                    <td>${stat.index+1}</td>
-                    <td>${quotationItem.product.name}</td>
-                    <td>${quotationItem.quantity}</td>
-                    <td>${quotationItem.price}</td>
-                    <td>${quotationItem.requiredDeliveryDate}</td>
-                    <td>${quotationItem.actualDeliveryDate}</td>
-                    <td>${quotationItem.notes}</td>
+                    <tbody>
+                    <tr>
+                        <td>${quotation.id}</td>
+                        <td>${quotation.customerName}</td>
+                        <td>${quotation.deliveryTerm}</td>
+                        <td>${quotation.notes}</td>
+                        <td>${quotation.remarks}</td>
+                        <td>${quotation.createdBy.fullName}</td>
+                        <td>${quotation.creationTime}</td>
+                        <td>${quotation.status}</td>
+                    </tr>
+                    </tbody>
 
-                    <td style="width: 50px"><a href="/quotationItems/edit/${quotationItem.id}">Edit line</a></td>
-                    <td style="width: 50px"><a href="/quotationItems/delete/${quotation.id}/${quotationItem.id}">Delete
-                        line</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                </table>
+            </div>
 
-        </table>
+                <%--lista QuotationItems--%>
 
-        <c:if test="${not empty param.error}">
-            <h4 style="color: red"><span>Item cannot be deleted - it has some records in database</span></h4>
-        </c:if>
-        <c:if test="${not empty param.deleted}">
-            <h4 style="color: red"><span>Item has been deleted</span></h4>
-        </c:if>
+            <div class="w3-container w3-margin w3-theme-l4">
+                <h3 class="w3-center">Items in this quotation:</h3>
+            </div>
+
+            <div class="w3-container w3-margin">
+            </div>
+
+            <div class="w3-container w3-margin">
+                <table class="w3-table w3-striped w3-border w3-bordered w3-hoverable w3-card-4"
+                       style="width:80%; margin-left: 10%">
+
+                    <thead>
+                    <tr class="w3-light-grey">
+                        <th>LP</th>
+                        <th>Product name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Required DD</th>
+                        <th>Actual DD</th>
+                        <th>Notes</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach items="${quotationItems}" var="quotationItem" varStatus="stat">
+                        <tr>
+                            <td>${stat.index+1}</td>
+                            <td>${quotationItem.product.name}</td>
+                            <td>${quotationItem.quantity}</td>
+                            <td>${quotationItem.price}</td>
+                            <td>${quotationItem.requiredDeliveryDate}</td>
+                            <td>${quotationItem.actualDeliveryDate}</td>
+                            <td>${quotationItem.notes}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
 
     </c:otherwise>
 
 </c:choose>
+
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../../footer.jsp" %>
+</div>
 
 </body>
 </html>
