@@ -49,8 +49,10 @@ public class QuotationController {
         if (userGroup == 1) {
             return "quotations/ug1/details";
         }
-//        todo należy dodać forward na kolejne 2 widoki dla pozostałych userGroup
-        return "quotations/details";
+        if (userGroup == 2) {
+            return "quotations/ug2/details";
+        }
+        return "quotations/ug3/details";
     }
 
     @GetMapping("/add")
