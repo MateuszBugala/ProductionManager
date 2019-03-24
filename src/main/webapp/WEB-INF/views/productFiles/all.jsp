@@ -32,8 +32,18 @@
             </div>
         </c:if>
 
-        <a href="http://localhost:8080/files/add/${productId}" class="w3-btn w3-medium w3-block w3-theme w3-large"
-           style="width:30%">Add a new item</a>
+        <%--<a href="http://localhost:8080/files/add/${productId}" class="w3-btn w3-medium w3-theme w3-large"--%>
+           <%--style="width:15%">Add a new item</a>--%>
+
+        <div class="w3-bar">
+            <button type="button" class="w3-btn w3-pale-red w3-large" style="width: 15%"
+                    onclick="location.href='http://localhost:8080/products/details/${productId}'">Back
+            </button>
+            <a href="http://localhost:8080/files/add/${productId}" class="w3-btn w3-medium w3-theme w3-large"
+               style="width:15%">Add a new item</a>
+        </div>
+
+
     </div>
 
     <div class="w3-container w3-margin">

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import pl.coderslab.model.ProductFile;
 import pl.coderslab.service.ProductFileService;
 import pl.coderslab.service.ProductService;
+import pl.coderslab.service.QuotationItemService;
 
 @Controller
 @RequestMapping(path = "/files", produces = "text/html; charset=UTF-8")
@@ -26,18 +27,27 @@ public class ProductFileController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private QuotationItemService quotationItemService;
+
     @RequestMapping("/all/{id}")
     public String all(@PathVariable Long id, Model model) {
         model.addAttribute("files", productFileService.findAllByProductId(id));
         model.addAttribute("productId", id);
         return "productFiles/all";
+
     }
 
 
     @GetMapping("/add/{id}")
     public String showUploadFileForm(@PathVariable Long id, ModelMap model) {
-        model.addAttribute("productId", id);
-        return "productFiles/add";
+        if (quotationItemService.findAllByProductId(id).size() == 0) {
+            model.addAttribute("productId", id);
+            return "productFiles/add";
+        } else {
+            return "redirect:/products/details/" + id + "?quoted=true";
+        }
+
     }
 
     @PostMapping("/add/{productId}")
@@ -48,7 +58,7 @@ public class ProductFileController {
         // Determine If There Is An File Upload
         if ((attachedFile != null) && (attachedFile.length > 0) && (!attachedFile.equals(""))) {
             for (CommonsMultipartFile aFile : attachedFile) {
-                if(aFile.isEmpty()) {
+                if (aFile.isEmpty()) {
                     continue;
                 } else {
 //                    System.out.println("Attachment Name?= " + aFile.getOriginalFilename() + "\n");
@@ -72,8 +82,6 @@ public class ProductFileController {
     }
 
 
-
-
     @GetMapping("/download/{id}")
     public String downloadDocument(@PathVariable Long id, HttpServletResponse response) throws IOException {
         ProductFile document = productFileService.findById(id);
@@ -81,7 +89,7 @@ public class ProductFileController {
 
 //        bez poniższego pliki automatycznie otworzą się w przeglądarce
         response.setContentLength(document.getData().length);
-        response.setHeader("Content-Disposition","attachment; filename=\"" + document.getFileName() +"\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + document.getFileName() + "\"");
 
         FileCopyUtils.copy(document.getData(), response.getOutputStream());
 
@@ -101,13 +109,16 @@ public class ProductFileController {
     public String delete(@PathVariable Long id) {
         ProductFile document = productFileService.findById(id);
         Long productId = document.getProduct().getId();
+        if (quotationItemService.findAllByProductId(productId).size() == 0) {
         try {
             productFileService.delete(id);
             return "redirect:/files/all/" + productId + "?deleted=true";
         } catch (Exception ConstraintViolationException) {
             return "redirect:/files/all/" + productId + "?error=true";
         }
+        } else {
+            return "redirect:/products/details/" + productId + "?quoted=true";
+        }
     }
-
 
 }
