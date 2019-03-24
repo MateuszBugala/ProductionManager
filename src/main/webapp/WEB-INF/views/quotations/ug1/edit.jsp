@@ -4,47 +4,60 @@
 <html>
 <head>
     <title>Quotations - edit</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <%@ include file="../../dependecies.jsp" %>
 </head>
 <body>
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<%@include file="../../loggedHeader.jsp" %>
 
-<h1>Edit a Quotation:</h1>
+<div class="w3-display-container w3-theme-l5" style="height:100%">
 
+    <div class="w3-container w3-theme-l4" style="padding-top: 52px">
+        <h2>Edit a quotation:</h2>
+    </div>
+
+    <div class="w3-container w3-margin">
+    </div>
+
+    <div class="w3-container w3-padding-16 w3-margin w3-col w3-card" style="width:30%">
         <form:form method="post" modelAttribute="quotation" action="/quotations/edit/${id}">
             <form:hidden path="id"/>
 
-            <table>
-                <tr>
-                    <td>CustomerName:</td>
-                    <td><form:input path="customerName"/><br></td>
-                    <td><form:errors path="customerName" cssClass="error-message" element="div" /></td>
-                </tr>
+            <div class="w3-container w3-padding-16">
+                <label>Customer name:</label>
+                <form:input path="customerName" class="w3-input w3-theme-l5"/>
+                <form:errors path="customerName" cssClass="w3-text-red" element="div"/>
+            </div>
 
-                <tr>
-                    <td>Delivery Term:</td>
-                    <td><form:input path="deliveryTerm"/><br></td>
-                    <td><form:errors path="deliveryTerm" cssClass="error-message" element="div" /></td>
-                </tr>
+            <div class="w3-container w3-padding-16">
+                <label>Delivery Term:</label>
+                <form:input path="deliveryTerm" class="w3-input w3-theme-l5"/>
+                <form:errors path="deliveryTerm" cssClass="w3-text-red" element="div"/>
+            </div>
 
-                <tr>
-                    <td>Notes:</td>
-                    <td><form:input path="notes"/><br></td>
-                    <td><form:errors path="notes" cssClass="error-message" element="div" /></td>
-                </tr>
+            <div class="w3-container w3-padding-16">
+                <label>Notes:</label>
+                <form:input path="notes" class="w3-input w3-theme-l5"/>
+                <form:errors path="notes" cssClass="w3-text-red" element="div"/>
+            </div>
 
-                <tr>
-                    <td>Remarks:</td>
-                    <td><form:input path="remarks"/><br></td>
-                    <td><form:errors path="remarks" cssClass="error-message" element="div" /></td>
-                </tr>
+            <div class="w3-container w3-padding-16">
+                <label>Remarks:</label>
+                <form:input path="remarks" class="w3-input w3-theme-l5"/>
+                <form:errors path="remarks" cssClass="w3-text-red" element="div"/>
+            </div>
 
-            </table>
-
-            <input type="submit" value="Send" style="margin-top: 30px">
+            <div class="w3-center w3-section">
+                <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="history.back()">Back</button>
+                <input type="submit" value="Update" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%">
+            </div>
 
         </form:form>
+    </div>
+</div>
 
+<div style="position: relative; margin-top:-30.3px">
+    <%@include file="../../footer.jsp" %>
+</div>
 </body>
 </html>
