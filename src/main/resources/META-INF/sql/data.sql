@@ -1,13 +1,13 @@
 LOCK TABLES `user_group` WRITE;
 /*!40000 ALTER TABLE `user_group` DISABLE KEYS */;
-INSERT INTO `user_groups` VALUES (1,'Handel'),(2,'Produkcja'),(3,'Admin');
+INSERT INTO `user_groups` VALUES (1,'Sales'),(2,'Production'),(3,'Admin');
 /*!40000 ALTER TABLE `user_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
 -- dane przykładowe================
 LOCK TABLES `product_groups` WRITE;
-INSERT INTO `product_groups` VALUES (1,'Group1'),(2,'Group2'),(3,'Group3');
+INSERT INTO `product_groups` VALUES (1,'Boxes'),(2,'Accessories'),(3,'Furniture elements'), (4,'Specials');
 UNLOCK TABLES;
 
 LOCK TABLES `product_colors` WRITE;
@@ -26,9 +26,3 @@ UNLOCK TABLES;
 -- UNLOCK TABLES;
 
 
--- poniższe zupełnie nie stworzyło userów
--- LOCK TABLES `users` WRITE;
--- INSERT INTO `users` VALUES (1,'Jan', 'Nowak', 'Handel', '$2a$10$rSnECffzNTY56VKH.W0tQeaBpKq56UrZcONVWQwM1BN/wi2WNlphG', 1),
--- (2,'Adam', 'Mickiewicz', 'Produkcja', '$2a$10$rSnECffzNTY56VKH.W0tQeaBpKq56UrZcONVWQwM1BN/wi2WNlphG', 2),
--- (3,'Michał', 'Czarny', 'Produkcja', '$2a$10$rSnECffzNTY56VKH.W0tQeaBpKq56UrZcONVWQwM1BN/wi2WNlphG', 3);
--- UNLOCK TABLES;

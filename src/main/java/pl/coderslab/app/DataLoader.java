@@ -35,13 +35,13 @@ public class DataLoader {
     public void loadData() {
 
         if (userService.findById(1L) == null) {
-            userService.save(new User("Jan", "Nowak", "Handel", "1", userGroupService.findById(1L)));
-            userService.save(new User("Adam", "Mickiewicz", "Produkcja", "1", userGroupService.findById(2L)));
-            userService.save(new User("Michał", "Czarny", "Admin", "1", userGroupService.findById(3L)));
+            userService.save(new User("John", "Doe", "sales@sales.com", "1", userGroupService.findById(1L)));
+            userService.save(new User("Jane", "Doe", "production@production.com", "1", userGroupService.findById(2L)));
+            userService.save(new User("Adam", "Smith", "admin@admin.com", "1", userGroupService.findById(3L)));
 
-            productService.save(new Product("code1", "name1", "description1", productGroupService.findById(1L), 100,100,100,  "notes1"));
-            productService.save(new Product("code2", "name2", "description2", productGroupService.findById(2L), 200,200,200,  "notes2"));
-            productService.save(new Product("code3", "name3", "description3", productGroupService.findById(3L), 300,300,300,  "notes3"));
+            productService.save(new Product("ABC001", "name1", "description1", productGroupService.findById(1L), 100,100,100,  "notes1"));
+            productService.save(new Product("ABC002", "name2", "description2", productGroupService.findById(2L), 200,200,200,  "notes2"));
+            productService.save(new Product("ABC003", "name3", "description3", productGroupService.findById(3L), 300,300,300,  "notes3"));
 
         }
     }
