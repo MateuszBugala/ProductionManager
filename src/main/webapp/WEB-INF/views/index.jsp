@@ -12,7 +12,7 @@
 
     <c:when test="${sessionScope.currentUser != null}">
         <script>
-            window.location = 'http://localhost:8080/dashboard'
+            window.location = '${pageContext.request.contextPath}/dashboard'
         </script>
     </c:when>
 

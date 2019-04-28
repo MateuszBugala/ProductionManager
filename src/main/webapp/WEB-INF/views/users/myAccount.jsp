@@ -43,7 +43,7 @@
 
             <div class="w3-center w3-section">
                 <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="history.back()">Back</button>
-                <button type="button" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%" onclick="location.href='http://localhost:8080/users/edit/${currentUser.id}'">Edit</button>
+                <button type="button" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%" onclick="location.href='${pageContext.request.contextPath}/users/edit/${currentUser.id}'">Edit</button>
             </div>
 
     </div>

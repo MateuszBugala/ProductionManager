@@ -39,7 +39,7 @@ public class EmailService {
                     "<p style=\"font-size: 16px; color:#555555; line-height: 21px\">",
                     "Your quotation " + quotId + " has just been quoted by Production department and is waiting for your approval.",
                     "<br>Please visit Production Manager App and check details:</p>",
-                    "<a href=\"http://localhost:8080/quotations/all\"><button style=\"background-color: #ffc107; border-color: #ffc107; border-radius: 30px; height: 40px; width: 200px\"><strong>YOUR QUOTATION &gt;</strong></button></a>\n" +
+                    "<a href=\"http://production-manager.mbugala.com.pl/quotations/all\"><button style=\"background-color: #ffc107; border-color: #ffc107; border-radius: 30px; height: 40px; width: 200px\"><strong>YOUR QUOTATION &gt;</strong></button></a>\n" +
                             "</div>"
             );
 

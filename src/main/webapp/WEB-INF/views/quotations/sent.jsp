@@ -6,7 +6,7 @@
     <%@ include file="../dependecies.jsp" %>
     <script>
         var timer = setTimeout(function () {
-            window.location = 'http://localhost:8080/quotations/all'
+            window.location = '${pageContext.request.contextPath}/quotations/all'
         }, 3000);
     </script>
 </head>

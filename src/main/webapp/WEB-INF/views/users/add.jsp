@@ -63,7 +63,7 @@
             </div>
 
             <div class="w3-center w3-section">
-                <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="location.href='http://localhost:8080/'">Back</button>
+                <button type="button" class="w3-btn w3-pale-red w3-large w3-margin"  style="width: 30%" onclick="location.href='${pageContext.request.contextPath}/'">Back</button>
                 <input type="submit" value="Create" class="w3-btn w3-theme w3-large w3-margin"  style="width: 30%">
             </div>
 

@@ -4,17 +4,17 @@
         <div class="w3-bar w3-theme-d2 w3-left-align w3-xlarge">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
                href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="http://localhost:8080/dashboard" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Main menu</a>
+            <a href="${pageContext.request.contextPath}/dashboard" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Main menu</a>
 
 
             <div class="w3-dropdown-hover w3-hide-small">
                 <button class="w3-button" title="Notifications">Products <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="http://localhost:8080/products/all" class="w3-bar-item w3-button">Show all</a>
-                    <a href="http://localhost:8080/products/add" class="w3-bar-item w3-button">Add new</a>
-                    <a href="http://localhost:8080/productColors/all" class="w3-bar-item w3-button">Product colors</a>
-                    <a href="http://localhost:8080/productMaterials/all" class="w3-bar-item w3-button">Product materials</a>
-                    <a href="http://localhost:8080/productGroups/all" class="w3-bar-item w3-button">Product groups</a>
+                    <a href="${pageContext.request.contextPath}/products/all" class="w3-bar-item w3-button">Show all</a>
+                    <a href="${pageContext.request.contextPath}/products/add" class="w3-bar-item w3-button">Add new</a>
+                    <a href="${pageContext.request.contextPath}/productColors/all" class="w3-bar-item w3-button">Product colors</a>
+                    <a href="${pageContext.request.contextPath}/productMaterials/all" class="w3-bar-item w3-button">Product materials</a>
+                    <a href="${pageContext.request.contextPath}/productGroups/all" class="w3-bar-item w3-button">Product groups</a>
                 </div>
             </div>
 
@@ -22,18 +22,18 @@
             <div class="w3-dropdown-hover w3-hide-small">
                 <button class="w3-button" title="Notifications">Quotations <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="http://localhost:8080/quotations/all" class="w3-bar-item w3-button">Show all</a>
-                    <a href="http://localhost:8080/quotations/add" class="w3-bar-item w3-button">Add new</a>
+                    <a href="${pageContext.request.contextPath}/quotations/all" class="w3-bar-item w3-button">Show all</a>
+                    <a href="${pageContext.request.contextPath}/quotations/add" class="w3-bar-item w3-button">Add new</a>
                 </div>
             </div>
 
 
-            <%--<a href="http://localhost:8080/users/myAccount/${currentUser.id}" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="my-account">My account</a>--%>
+            <%--<a href="${pageContext.request.contextPath}/users/myAccount/${currentUser.id}" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="my-account">My account</a>--%>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button" title="Notifications">Hello ${currentUser.firstName} <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="http://localhost:8080/users/myAccount/${currentUser.id}" class="w3-bar-item w3-button">My account</a>
-                    <a href="http://localhost:8080/login/logout" class="w3-bar-item w3-button">Log out</a>
+                    <a href="${pageContext.request.contextPath}/users/myAccount/${currentUser.id}" class="w3-bar-item w3-button">My account</a>
+                    <a href="${pageContext.request.contextPath}/login/logout" class="w3-bar-item w3-button">Log out</a>
                 </div>
             </div>
 
@@ -41,10 +41,10 @@
 
         <!-- Navbar on small screens -->
         <div id="nav" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
-            <a href="http://localhost:8080/products/all" class="w3-bar-item w3-button">Products</a>
-            <a href="http://localhost:8080/quotations/all" class="w3-bar-item w3-button">Quotations</a>
-            <a href="http://localhost:8080/users/myAccount/${currentUser.id}" class="w3-bar-item w3-button">My account</a>
-            <a href="http://localhost:8080/login/logout" class="w3-bar-item w3-button">Log out</a>
+            <a href="${pageContext.request.contextPath}/products/all" class="w3-bar-item w3-button">Products</a>
+            <a href="${pageContext.request.contextPath}/quotations/all" class="w3-bar-item w3-button">Quotations</a>
+            <a href="${pageContext.request.contextPath}/users/myAccount/${currentUser.id}" class="w3-bar-item w3-button">My account</a>
+            <a href="${pageContext.request.contextPath}/login/logout" class="w3-bar-item w3-button">Log out</a>
         </div>
 
     </div>

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<button onclick="location.href='http://localhost:8080/'" type="button">HOME</button>
+<button onclick="location.href='${pageContext.request.contextPath}/'" type="button">HOME</button>
 
 <h1>Add a user group:</h1>
 

@@ -21,7 +21,7 @@
             <div class="w3-container w3-margin">
 
                 <div class="w3-bar">
-                    <a href="http://localhost:8080/quotations/all"
+                    <a href="${pageContext.request.contextPath}/quotations/all"
                        class="w3-btn w3-pale-red w3-large"
                        style="width:15%">Back</a>
                 </div>
@@ -120,11 +120,11 @@
 
                 <div class="w3-bar">
 
-                    <a href="http://localhost:8080/quotations/all"
+                    <a href="${pageContext.request.contextPath}/quotations/all"
                        class="w3-btn w3-pale-red w3-large"
                        style="width:15%">Back</a>
 
-                    <a href="http://localhost:8080/quotations/quoted/${quotation.id}"
+                    <a href="${pageContext.request.contextPath}/quotations/quoted/${quotation.id}"
                        class="w3-btn w3-medium w3-theme w3-large"
                        style="width:15%">Quotation ready - send</a>
                 </div>
@@ -222,7 +222,7 @@
 
                 <div class="w3-bar">
 
-                    <a href="http://localhost:8080/quotations/all"
+                    <a href="${pageContext.request.contextPath}/quotations/all"
                        class="w3-btn w3-pale-red w3-large"
                        style="width:15%">Back</a>
 
@@ -320,7 +320,7 @@
 
                 <div class="w3-bar">
 
-                    <a href="http://localhost:8080/quotations/all"
+                    <a href="${pageContext.request.contextPath}/quotations/all"
                        class="w3-btn w3-pale-red w3-large"
                        style="width:15%">Back</a>
                 </div>

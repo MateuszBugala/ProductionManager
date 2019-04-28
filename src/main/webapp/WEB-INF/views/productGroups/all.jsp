@@ -67,7 +67,7 @@
                     </div>
                 </c:if>
 
-                <a href="http://localhost:8080/productGroups/add" class="w3-btn w3-medium w3-block w3-theme w3-large"
+                <a href="${pageContext.request.contextPath}/productGroups/add" class="w3-btn w3-medium w3-block w3-theme w3-large"
                    style="width:30%">Add a new item</a>
             </div>
 

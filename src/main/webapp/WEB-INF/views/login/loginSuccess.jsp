@@ -5,7 +5,7 @@
     <%@ include file="../dependecies.jsp" %>
     <script>
         var timer = setTimeout(function () {
-            window.location = 'http://localhost:8080/dashboard'
+            window.location = '${pageContext.request.contextPath}/dashboard'
         }, 1000);
     </script>
 

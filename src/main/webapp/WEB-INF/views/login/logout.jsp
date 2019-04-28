@@ -10,8 +10,8 @@
 
     <script>
         var timer = setTimeout(function () {
-            window.location = 'http://localhost:8080'
-        }, 3000);
+            window.location = '${pageContext.request.contextPath}/dashboard'
+        }, 2500);
     </script>
 </head>
 

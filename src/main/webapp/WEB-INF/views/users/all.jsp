@@ -34,7 +34,7 @@
         </c:if>
 
         <div class="w3-container w3-center">
-            <a href="http://localhost:8080/users/add"
+            <a href="${pageContext.request.contextPath}/users/add"
                class="w3-btn w3-medium w3-theme w3-large"
                style="width:30%">Create a new user</a>
         </div>

@@ -58,16 +58,16 @@
 
         <div class="w3-bar">
 
-            <a href="http://localhost:8080/quotations/all"
+            <a href="${pageContext.request.contextPath}/quotations/all"
                class="w3-btn w3-pale-red w3-large"
                style="width:15%">Back</a>
-            <a href="http://localhost:8080/quotations/sent/${quotation.id}"
+            <a href="${pageContext.request.contextPath}/quotations/sent/${quotation.id}"
                class="w3-btn w3-medium w3-theme w3-large"
                style="width:15%">Set status to 2</a>
-            <a href="http://localhost:8080/quotations/quoted/${quotation.id}"
+            <a href="${pageContext.request.contextPath}/quotations/quoted/${quotation.id}"
                class="w3-btn w3-medium w3-theme w3-large"
                style="width:15%">Set status to 3</a>
-            <a href="http://localhost:8080/quotations/approved/${quotation.id}"
+            <a href="${pageContext.request.contextPath}/quotations/approved/${quotation.id}"
                class="w3-btn w3-medium w3-theme w3-large"
                style="width:15%">Set status to 4</a>
         </div>
@@ -120,7 +120,7 @@
 
     </div>
     <div class="w3-container w3-margin">
-        <a href="http://localhost:8080/quotations/addItem/${quotation.id}"
+        <a href="${pageContext.request.contextPath}/quotations/addItem/${quotation.id}"
            class="w3-btn w3-medium w3-theme w3-large"
            style="width:30%; margin-left: 35%">Add products to this quotation</a>
     </div>
