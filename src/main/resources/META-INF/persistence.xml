@@ -4,20 +4,22 @@
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="prodManPersistenceUnit">  <!--ważne ta nazwa musi zgadzać się z AppConfig-->
+    <persistence-unit name="prodManPersistenceUnit">
 
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/productionManager?useSSL=false"/>     <!--nazwa bazy danych-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/productionManager?useSSL=false"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="coderslab"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="validationQuery" value="select 1"/>
+            <property name="testOnBorrow" value="true"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="validationInterval" value="5000"/>
 
-            <!--value="drop-and-create"-->
             <property name="javax.persistence.schema-generation.database.action" value="none"/>
             <property name="javax.persistence.sql-load-script-source"
                       value="META-INF/sql/data.sql" />
 
-            <!--This property makes Hibernate generate the appropriate SQL for the chosen database.-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
 
             <property name="hibernate.connection.useUnicode" value="true"/>
