@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductionManager</title>
+</head>
+<body>
+
+<div style="line-height: 14px; padding: 10px; color: #132F40; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif">
+    <p style="font-size: 22px">Hello <span data-th-text="${name}"><strong>Sebastian</strong></span>,</p>
+    <p style="font-size: 16px; color:#555555; line-height: 21px">
+        Your quotation <span data-th-text="${quotId}"> 123 </span> has just been quoted by Production department and is
+        waiting for your approval.
+        <br>Please visit Production Manager App and check details:</p>
+    <a href="http://production-manager.mbugala.com.pl/quotations/all">
+        <button style="background-color: #ffc107; border-color: #ffc107; border-radius: 30px; height: 40px; width: 200px">
+            <strong>YOUR QUOTATION &gt;</strong></button>
+    </a>
+</div>
+
+</body>
+</html>
