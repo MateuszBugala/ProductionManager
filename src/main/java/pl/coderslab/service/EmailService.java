@@ -5,9 +5,28 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 public class EmailService {
+
+    @Autowired
+    private TemplateEngine templateEngine;
+
+    private String generateMailHtml(String name, String email, String templateFileName) {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("name", name);
+        variables.put("email", email);
+        String output = this.templateEngine.process(templateFileName, new Context(Locale.getDefault(), variables));
+        return output;
+    }
 
     private static Properties prop = new Properties();
 
@@ -28,7 +47,7 @@ public class EmailService {
     }
 
 
-    public static void send(String to, String name, Long quotId) {
+    public void send(String to, String subject, String name, Long quotId, String emailTemplate) throws MessagingException {
 
 
         //get Session
@@ -39,11 +58,14 @@ public class EmailService {
                     }
                 });
         //compose message
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-            String subject = "Quotation nr " + quotId + " is ready";
+        MimeMessage message = new MimeMessage(session);
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+//        String subject = "Quotation nr " + quotId + " is ready";
+        message.setSubject(subject);
+        try {
+            message.setFrom(new InternetAddress("noreply@noreply.com",refreshConfig().getProperty("mail.fromName")));
+
             String body = String.join(System.getProperty("line.separator"),
                     "<div style=\"line-height: 14px; padding: 10px; color: #132F40; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif;\">",
                     "<p><span style=\"font-size: 22px;\">Hello <strong>" + name + ",</strong></p>",
@@ -54,13 +76,15 @@ public class EmailService {
                             "</div>"
             );
 
-            message.setSubject(subject);
+
             message.setContent(body, "text/html");
             Transport.send(message);
             System.out.println("email sent successfully");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            System.err.println("Cannot add email 'from' custom name");
         }
+        message.setContent(generateMailHtml(name, to, emailTemplate), "text/html; charset=UTF-8");
 
     }
 
