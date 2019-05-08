@@ -3,28 +3,39 @@ package pl.coderslab.service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class EmailService {
 
+    private static Properties prop = new Properties();
+
+    private static void fetchConfig() {
+        try (InputStream input = EmailService.class.getClassLoader().getResourceAsStream("mail.properties")) {
+            prop.load(input);
+        } catch (IOException io) {
+            io.printStackTrace();
+            System.err.println("Cannot open and load mail.properties file");
+        }
+    }
+
+    //    added mail.properties to be refreshed at runtime:
+    private static Properties refreshConfig() {
+        prop.clear();
+        fetchConfig();
+        return prop;
+    }
+
+
     public static void send(String to, String name, Long quotId) {
-        //Get properties object
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
-        String from = "aaab35404@gmail.com";
-        String password = "xxx";
 
 
         //get Session
-        Session session = Session.getDefaultInstance(props,
+        Session session = Session.getDefaultInstance(refreshConfig(),
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(from, password);
+                        return new PasswordAuthentication(refreshConfig().getProperty("mail.from"), refreshConfig().getProperty("password"));
                     }
                 });
         //compose message
