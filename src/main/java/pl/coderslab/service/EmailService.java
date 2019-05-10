@@ -14,6 +14,7 @@ import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import pl.coderslab.model.User;
 
 public class EmailService {
 
@@ -46,7 +47,7 @@ public class EmailService {
     }
 
 
-    public void send(String to, String subject, String name, Long quotId, String emailTemplate) throws MessagingException {
+    private void send(String to, String subject, String name, String emailTemplate) throws MessagingException {
 
         Session session = Session.getDefaultInstance(refreshConfig(),
                 new javax.mail.Authenticator() {
@@ -57,7 +58,6 @@ public class EmailService {
 
         MimeMessage message = new MimeMessage(session);
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-//        String subject = "Quotation nr " + quotId + " is ready";
         message.setSubject(subject);
         try {
             message.setFrom(new InternetAddress("noreply@noreply.com",refreshConfig().getProperty("mail.fromName")));
@@ -68,6 +68,11 @@ public class EmailService {
         message.setContent(generateMailHtml(name, to, emailTemplate), "text/html; charset=UTF-8");
         Transport.send(message);
         System.out.println("Email sent successfully");
+    }
+
+    public void sendQuotationReadyEmail(User user, Long quotationID) throws MessagingException {
+        send(user.getEmail(), "Quotation nr " + quotationID + " is ready",
+                user.getFullName(), "quotationReady");
     }
 
 }
