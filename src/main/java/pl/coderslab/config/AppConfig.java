@@ -16,6 +16,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 import pl.coderslab.converter.ProductColorConverter;
 import pl.coderslab.converter.ProductGroupConverter;
 import pl.coderslab.converter.ProductMaterialConverter;
@@ -108,6 +112,26 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         multipartResolver.setMaxUploadSize(/*20971520*/ 1024 * 1024 * 20);   // 20MB
         multipartResolver.setMaxInMemorySize(/*1048576*/ 1024 * 1024 * 1);  // 1MB
         return multipartResolver;
+    }
+
+    @Bean
+    public ITemplateResolver templateResolver()
+    {
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+
+        return templateResolver;
+    }
+
+    @Bean
+    public TemplateEngine templateEngine()
+    {
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(this.templateResolver());
+
+        return templateEngine;
     }
 
 

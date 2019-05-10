@@ -14,6 +14,7 @@ import pl.coderslab.service.ProductService;
 import pl.coderslab.service.QuotationItemService;
 import pl.coderslab.service.QuotationService;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Timestamp;
@@ -160,15 +161,11 @@ public class QuotationController {
         }
         quotationService.changeStatus(id, 3);
 
-//        email:
         User user = quotationService.findById(id).getCreatedBy();
-        String userName = user.getFullName();
-        String userEmail = user.getEmail();
-//      in case of incorrect email password:
         try {
-            EmailService.send(userEmail,userName, id);
-        } catch (RuntimeException e) {
-            return "redirect:/quotations/all";
+            quotationService.sendQuotationReadyEmail(user, id);
+        } catch (MessagingException e) {
+            System.err.println("Cannot send email" + "\n" + e);
         }
         return "quotations/sent";
     }

@@ -9,6 +9,7 @@ import pl.coderslab.model.Quotation;
 import pl.coderslab.model.User;
 import pl.coderslab.repository.QuotationRepository;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Timestamp;
@@ -21,6 +22,8 @@ public class QuotationService {
 
     @Autowired
     private QuotationRepository quotationRepository;
+    @Autowired
+    private EmailService emailService;
 
 
     public List<Quotation> findAll() {
@@ -38,7 +41,6 @@ public class QuotationService {
         quotationRepository.save(entity);
     }
 
-//    poniższy update nadpisze nullem ,creation time, usera i status
     public void update(Quotation entity) {
         Quotation quotationfromDB = quotationRepository.findOne(entity.getId());
         entity.setCreationTime(quotationfromDB.getCreationTime());;
@@ -58,6 +60,10 @@ public class QuotationService {
         Quotation quotation = quotationRepository.findOne(id);
         quotation.setStatus(status);
         quotationRepository.save(quotation);
+    }
+
+    public void sendQuotationReadyEmail(User user, Long id) throws MessagingException {
+        emailService.sendQuotationReadyEmail(user, id);
     }
 
 }

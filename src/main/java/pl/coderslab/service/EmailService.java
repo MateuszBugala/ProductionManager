@@ -12,10 +12,12 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import pl.coderslab.model.User;
 
+@Component
 public class EmailService {
 
     @Autowired
