@@ -59,6 +59,17 @@ public class QuotationService {
     public void changeStatus(Long id, int status) {
         Quotation quotation = quotationRepository.findOne(id);
         quotation.setStatus(status);
+        switch (status) {
+            case 2:
+                quotation.setCreationTimeStat2(Timestamp.valueOf(LocalDateTime.now()));
+                break;
+            case 3:
+                quotation.setCreationTimeStat3(Timestamp.valueOf(LocalDateTime.now()));
+                break;
+            case 4:
+                quotation.setCreationTimeStat4(Timestamp.valueOf(LocalDateTime.now()));
+                break;
+        }
         quotationRepository.save(quotation);
     }
 

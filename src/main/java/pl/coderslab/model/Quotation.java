@@ -24,6 +24,10 @@ public class Quotation {
 
     private int status;
 
+    private Timestamp creationTimeStat2;
+    private Timestamp creationTimeStat3;
+    private Timestamp creationTimeStat4;
+
     @OneToMany(mappedBy = "quotation", cascade = CascadeType.MERGE)
     private List<QuotationItem> quotationItems = new ArrayList<>();
 
@@ -98,6 +102,30 @@ public class Quotation {
 
     public void setQuotationItems(List<QuotationItem> quotationItems) {
         this.quotationItems = quotationItems;
+    }
+
+    public Timestamp getCreationTimeStat2() {
+        return creationTimeStat2;
+    }
+
+    public void setCreationTimeStat2(Timestamp creationTimeStat2) {
+        this.creationTimeStat2 = creationTimeStat2;
+    }
+
+    public Timestamp getCreationTimeStat3() {
+        return creationTimeStat3;
+    }
+
+    public void setCreationTimeStat3(Timestamp creationTimeStat3) {
+        this.creationTimeStat3 = creationTimeStat3;
+    }
+
+    public Timestamp getCreationTimeStat4() {
+        return creationTimeStat4;
+    }
+
+    public void setCreationTimeStat4(Timestamp creationTimeStat4) {
+        this.creationTimeStat4 = creationTimeStat4;
     }
 
     @Override
