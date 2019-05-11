@@ -27,11 +27,8 @@ public class LoginController {
     }
 
     @PostMapping("/")
-    public String authorize(@Valid User user, @RequestParam String password, BindingResult result, Model model, HttpSession session) {
-        if (result.hasErrors()) {
-            return "login/login";
-        }
-        String emailCandidate = user.getEmail();
+    public String authorize(@RequestParam String email, @RequestParam String password,Model model) {
+        String emailCandidate = email;
         String passwordCandidate = password;
         User authorizedUser = userService.authorization(emailCandidate, passwordCandidate);
 

@@ -1,8 +1,12 @@
 package pl.coderslab.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +18,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
 
+    @Column(nullable = false, unique = true)
+    @NotBlank
+    @Email
     private String email;
 
+//    @NotBlank
+//    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$", message = "Password must have at least 8 characters including min. 1: small letter, capital letter, digit.")
     private String password;
 
     @ManyToOne
+    @NotNull
     private UserGroup userGroup;
 
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.MERGE)
