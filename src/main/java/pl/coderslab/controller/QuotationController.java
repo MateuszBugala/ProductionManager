@@ -175,4 +175,10 @@ public class QuotationController {
         quotationService.changeStatus(id, 4);
         return "quotations/sent";
     }
+
+    @RequestMapping("/history/{id}")
+    public String showHistory(@PathVariable Long id, Model model) {
+        model.addAttribute("quotation", quotationService.findById(id));
+        return "quotations/ug3/history";
+    }
 }

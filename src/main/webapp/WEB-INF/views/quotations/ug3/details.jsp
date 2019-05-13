@@ -103,6 +103,7 @@
                 <td>${quotation.status}</td>
 
 
+                <td style="width: 50px"><a href="/quotations/history/${quotation.id}">History</a></td>
                 <td style="width: 50px"><a href="/quotations/edit/${quotation.id}">Edit</a></td>
                 <td style="width: 50px"><a href="/quotations/delete/${quotation.id}"
                                            onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
