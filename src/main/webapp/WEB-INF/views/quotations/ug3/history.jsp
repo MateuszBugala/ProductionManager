@@ -37,15 +37,19 @@
 
             <tbody>
             <tr>
-                <td>2</td>
+                <td>1 - created</td>
+                <td>${quotation.creationTime}</td>
+            </tr>
+            <tr>
+                <td>2 - sent to production</td>
                 <td>${quotation.creationTimeStat2}</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td>3 - quoted</td>
                 <td>${quotation.creationTimeStat3}</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td>4 - approved</td>
                 <td>${quotation.creationTimeStat4}</td>
             </tr>
             </tbody>
