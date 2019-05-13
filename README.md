@@ -8,7 +8,9 @@ It targets SME which produce unique items in small quantities – wherever the p
 Structure:
 - 3 groups of users – production, sales and admin – with differentiated access and views
 - products – with many details like dimensions, groups, materials and additional files
-- quotations – with information about quantities, delivery dates etc.; email notification when status is changed
+- quotations – with information about quantities, delivery dates etc.; 
+    - email notification when status is changed; 
+    - timestamp of each status' change (may work as KPI for sales or production)
 
 Flow:
 - sales creates products adding all required information together with files
@@ -17,12 +19,12 @@ Flow:
 - sales either accepts it or requires corrections
 - finally sales accepts the quotation
 - approved items are blocked for editing, stored in DB and visible for other sales for reference
+- there is a 
 
 Future development:
-- timestamp of each change in status of a quotation – it may work as KPI for sales or production
 - data validation
 - search engine and filters for products
-- cloning of products/quotations which are block for editing
+- cloning of products/quotations which are blocked for editing
 - adding module for handling orders 
 
 
